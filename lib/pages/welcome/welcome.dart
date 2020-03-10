@@ -9,7 +9,7 @@ class WelcomePage extends StatelessWidget {
   /// 页头标题
   Widget _buildPageHeadTitle() {
     return Container(
-      margin: EdgeInsets.only(top: duSetHeight(65)),
+      margin: EdgeInsets.only(top: duSetHeight(60 + 44.0)), // 顶部系统栏 44px
       child: Text(
         "Features",
         textAlign: TextAlign.center,
@@ -18,6 +18,7 @@ class WelcomePage extends StatelessWidget {
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w600,
           fontSize: duSetFontSize(24),
+          height: 1,
         ),
       ),
     );
@@ -80,7 +81,7 @@ class WelcomePage extends StatelessWidget {
   }
 
   /// 开始按钮
-  Widget _buildStartButton() {
+  Widget _buildStartButton(BuildContext context) {
     return Container(
       width: duSetWidth(295),
       height: duSetHeight(44),
@@ -90,9 +91,14 @@ class WelcomePage extends StatelessWidget {
         textColor: AppColors.primaryElementText,
         child: Text("Get started"),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(duSetWidth(6))),
+          borderRadius: Radii.k6pxRadius,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            "/sign-in",
+          );
+        },
       ),
     );
   }
@@ -125,7 +131,7 @@ class WelcomePage extends StatelessWidget {
               40,
             ),
             Spacer(),
-            _buildStartButton(),
+            _buildStartButton(context),
           ],
         ),
       ),
