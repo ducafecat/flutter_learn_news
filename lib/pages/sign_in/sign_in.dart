@@ -16,13 +16,27 @@ class _SignInPageState extends State<SignInPage> {
   //密码的控制器
   final TextEditingController _passController = TextEditingController();
 
-  // 注册按钮
-  _handleSignUp() {
+  // 跳转 注册界面
+  _handleNavSignUp() {
     Navigator.pushNamed(
       context,
       "/sign-up",
     );
   }
+
+  // 执行登录操作
+  _handleSignIn() {
+    if (!duIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!duCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
+  }
+
+  ///////////////////////////////
 
   // logo
   Widget _buildLogo() {
@@ -127,23 +141,14 @@ class _SignInPageState extends State<SignInPage> {
               children: [
                 // 注册
                 btnFlatButtonWidget(
-                  onPressed: _handleSignUp,
+                  onPressed: _handleNavSignUp,
                   gbColor: AppColors.thirdElement,
                   title: "Sign up",
                 ),
                 Spacer(),
                 // 登录
                 btnFlatButtonWidget(
-                  onPressed: () {
-                    if (!duIsEmail(_emailController.value.text)) {
-                      toastInfo(msg: '请正确输入邮件');
-                      return;
-                    }
-                    if (!duCheckStringLength(_passController.value.text, 6)) {
-                      toastInfo(msg: '密码不能小于6位');
-                      return;
-                    }
-                  },
+                  onPressed: _handleSignIn,
                   gbColor: AppColors.primaryElement,
                   title: "Sign in",
                 ),
@@ -229,7 +234,7 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       margin: EdgeInsets.only(bottom: duSetHeight(20)),
       child: btnFlatButtonWidget(
-        onPressed: _handleSignUp,
+        onPressed: _handleNavSignUp,
         width: 294,
         gbColor: AppColors.secondaryElement,
         fontColor: AppColors.primaryText,

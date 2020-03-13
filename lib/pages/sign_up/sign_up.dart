@@ -16,6 +16,28 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
+  // 返回上一页
+  _handleNavPop() {
+    Navigator.pop(context);
+  }
+
+  // 执行注册操作
+  _handleSignUp() {
+    if (!duCheckStringLength(_fullnameController.value.text, 5)) {
+      toastInfo(msg: '用户名不能小于5位');
+      return;
+    }
+    if (!duIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!duCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
+    Navigator.pop(context);
+  }
+
   // logo
   Widget _buildLogo() {
     return Container(
@@ -95,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
             height: duSetHeight(22),
             margin: EdgeInsets.only(top: duSetHeight(20)),
             child: FlatButton(
-              onPressed: () => {},
+              onPressed: _handleSignUp,
               child: Text(
                 "Fogot password?",
                 textAlign: TextAlign.center,
@@ -167,9 +189,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Container(
       margin: EdgeInsets.only(bottom: duSetHeight(20)),
       child: btnFlatButtonWidget(
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: _handleNavPop,
         width: 294,
         gbColor: AppColors.secondaryElement,
         fontColor: AppColors.primaryText,
