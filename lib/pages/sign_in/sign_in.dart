@@ -16,6 +16,14 @@ class _SignInPageState extends State<SignInPage> {
   //密码的控制器
   final TextEditingController _passController = TextEditingController();
 
+  // 注册按钮
+  _handleSignUp() {
+    Navigator.pushNamed(
+      context,
+      "/sign-up",
+    );
+  }
+
   // logo
   Widget _buildLogo() {
     return Container(
@@ -119,12 +127,7 @@ class _SignInPageState extends State<SignInPage> {
               children: [
                 // 注册
                 btnFlatButtonWidget(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      "/sign-up",
-                    );
-                  },
+                  onPressed: _handleSignUp,
                   gbColor: AppColors.thirdElement,
                   title: "Sign up",
                 ),
@@ -226,7 +229,7 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       margin: EdgeInsets.only(bottom: duSetHeight(20)),
       child: btnFlatButtonWidget(
-        onPressed: () {},
+        onPressed: _handleSignUp,
         width: 294,
         gbColor: AppColors.secondaryElement,
         fontColor: AppColors.primaryText,
