@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ducafecat_news/common/apis/apis.dart';
+import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
@@ -25,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   // 执行登录操作
-  _handleSignIn() {
+  _handleSignIn() async {
     if (!duIsEmail(_emailController.value.text)) {
       toastInfo(msg: '请正确输入邮件');
       return;
@@ -34,6 +36,16 @@ class _SignInPageState extends State<SignInPage> {
       toastInfo(msg: '密码不能小于6位');
       return;
     }
+
+    UserRequestEntity params = UserRequestEntity(
+      email: _emailController.value.text,
+      password: duSHA256(_passController.value.text),
+    );
+
+    UserResponseEntity res = await UserAPI.login(params: params);
+
+    // 写本地 access_token , 不写全局，业务：离线登录
+    // 全局数据 gUser
   }
 
   ///////////////////////////////
@@ -148,7 +160,7 @@ class _SignInPageState extends State<SignInPage> {
                 Spacer(),
                 // 登录
                 btnFlatButtonWidget(
-                  onPressed: _handleSignIn,
+                  onPressed: () => _handleSignIn(),
                   gbColor: AppColors.primaryElement,
                   title: "Sign in",
                 ),

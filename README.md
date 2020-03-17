@@ -1,5 +1,15 @@
 # Flutter 新闻客户端
 
+## SDK 环境
+
+```
+flutter --version
+Flutter 1.12.13+hotfix.8 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 0b8abb4724 (5 weeks ago) • 2020-02-11 11:44:36 -0800
+Engine • revision e1e6ced81d
+Tools • Dart 2.7.0
+```
+
 ## 技术栈
 
 - flutter_screenutil 设计稿适配
@@ -18,6 +28,14 @@
 ## 代码仓
 
 https://github.com/ducafecat/flutter_learn_news
+
+## 接口管理
+
+- 管理
+  http://yapi.demo.qunar.com/
+
+- 接口地址
+  http://yapi.demo.qunar.com/mock/88171
 
 ## 蓝湖设计稿
 
