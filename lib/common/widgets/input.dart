@@ -9,6 +9,7 @@ Widget inputTextEdit({
   String hintText,
   bool isPassword = false,
   double marginTop = 15,
+  bool autofocus = false,
 }) {
   return Container(
     height: duSetHeight(44),
@@ -18,6 +19,7 @@ Widget inputTextEdit({
       borderRadius: Radii.k6pxRadius,
     ),
     child: TextField(
+      autofocus: autofocus,
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(

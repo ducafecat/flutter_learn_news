@@ -136,6 +136,7 @@ class _SignInPageState extends State<SignInPage> {
             keyboardType: TextInputType.emailAddress,
             hintText: "Email",
             marginTop: 0,
+            // autofocus: true,
           ),
           // password input
           inputTextEdit(
