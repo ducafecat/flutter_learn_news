@@ -37,12 +37,12 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    UserRequestEntity params = UserRequestEntity(
+    UserLoginRequestEntity params = UserLoginRequestEntity(
       email: _emailController.value.text,
       password: duSHA256(_passController.value.text),
     );
 
-    UserResponseEntity res = await UserAPI.login(params: params);
+    UserLoginResponseEntity res = await UserAPI.login(params: params);
 
     // 写本地 access_token , 不写全局，业务：离线登录
     // 全局数据 gUser
