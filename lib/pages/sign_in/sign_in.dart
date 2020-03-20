@@ -45,6 +45,9 @@ class _SignInPageState extends State<SignInPage> {
 
     UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
     Global.saveProfile(userProfile);
+
+    // List<NewsIndexResponseEntity> newsList = await NewsAPI.index();
+    // print(newsList.length);
   }
 
   ///////////////////////////////
