@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
+import 'package:flutter_ducafecat_news/pages/account/account.dart';
+import 'package:flutter_ducafecat_news/pages/bookmarks/bookmarks.dart';
+import 'package:flutter_ducafecat_news/pages/category/category.dart';
 import 'package:flutter_ducafecat_news/pages/main/main.dart';
 
 class ApplicationPage extends StatefulWidget {
@@ -14,7 +17,12 @@ class ApplicationPage extends StatefulWidget {
 class _ApplicationPageState extends State<ApplicationPage>
     with SingleTickerProviderStateMixin {
   int _page = 0;
-  String _title = 'Welcome';
+  final List<String> _tabTitles = [
+    'Welcome',
+    'Cagegory',
+    'Bookmarks',
+    'Account'
+  ];
   PageController _pageController;
 
   // 底部导航项目
@@ -22,7 +30,11 @@ class _ApplicationPageState extends State<ApplicationPage>
     new BottomNavigationBarItem(
       icon: Icon(
         Iconfont.home,
-        color: AppColors.primaryText,
+        color: AppColors.tabBarElement,
+      ),
+      activeIcon: Icon(
+        Iconfont.home,
+        color: AppColors.secondaryElementText,
       ),
       title: Text('main'),
       backgroundColor: AppColors.primaryBackground,
@@ -30,7 +42,11 @@ class _ApplicationPageState extends State<ApplicationPage>
     new BottomNavigationBarItem(
       icon: Icon(
         Iconfont.grid,
-        color: AppColors.primaryText,
+        color: AppColors.tabBarElement,
+      ),
+      activeIcon: Icon(
+        Iconfont.grid,
+        color: AppColors.secondaryElementText,
       ),
       title: Text('category'),
       backgroundColor: AppColors.primaryBackground,
@@ -38,7 +54,11 @@ class _ApplicationPageState extends State<ApplicationPage>
     new BottomNavigationBarItem(
       icon: Icon(
         Iconfont.tag,
-        color: AppColors.primaryText,
+        color: AppColors.tabBarElement,
+      ),
+      activeIcon: Icon(
+        Iconfont.tag,
+        color: AppColors.secondaryElementText,
       ),
       title: Text('tag'),
       backgroundColor: AppColors.primaryBackground,
@@ -46,7 +66,11 @@ class _ApplicationPageState extends State<ApplicationPage>
     new BottomNavigationBarItem(
       icon: Icon(
         Iconfont.me,
-        color: AppColors.primaryText,
+        color: AppColors.tabBarElement,
+      ),
+      activeIcon: Icon(
+        Iconfont.me,
+        color: AppColors.secondaryElementText,
       ),
       title: Text('my'),
       backgroundColor: AppColors.primaryBackground,
@@ -63,20 +87,6 @@ class _ApplicationPageState extends State<ApplicationPage>
   void _handlePageChanged(int page) {
     setState(() {
       this._page = page;
-      switch (page) {
-        case 0:
-          _title = 'Welcome';
-          break;
-        case 1:
-          _title = 'Cagegory';
-          break;
-        case 2:
-          _title = 'Tag';
-          break;
-        case 3:
-          _title = 'My';
-          break;
-      }
     });
   }
 
@@ -97,7 +107,7 @@ class _ApplicationPageState extends State<ApplicationPage>
     return transparentAppBar(
       context: context,
       title: Text(
-        _title,
+        _tabTitles[_page],
         style: TextStyle(
           color: AppColors.primaryText,
           fontFamily: 'Montserrat',
@@ -114,7 +124,9 @@ class _ApplicationPageState extends State<ApplicationPage>
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         MainPage(),
-        MainPage(),
+        CategoryPage(),
+        BookmarksPage(),
+        AccountPage(),
       ],
       controller: _pageController,
       onPageChanged: _handlePageChanged,
@@ -126,9 +138,11 @@ class _ApplicationPageState extends State<ApplicationPage>
     return BottomNavigationBar(
       items: _bottomTabs,
       currentIndex: _page,
-      fixedColor: AppColors.secondaryElementText,
+      // fixedColor: AppColors.primaryElement,
       type: BottomNavigationBarType.fixed,
       onTap: _handleNavBarTap,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
     );
   }
 

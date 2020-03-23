@@ -25,4 +25,9 @@ class AppColors {
 
   /// 第三种控件-背景色 石墨色
   static const Color thirdElement = Color.fromARGB(255, 45, 45, 47);
+
+  // *****************************************
+
+  /// tabBar 默认颜色 灰色
+  static const Color tabBarElement = Color.fromARGB(255, 208, 208, 208);
 }
