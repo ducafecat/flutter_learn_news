@@ -25,6 +25,12 @@ Tools • Dart 2.7.0
 - [ ] 搜索页
 - [ ] 详情页
 
+## 导入 iconfont 图标库
+
+```
+iconfont_builder --from ./assets/fonts --to ./lib/common/utils/iconfont.dart
+```
+
 ## 代码仓
 
 https://github.com/ducafecat/flutter_learn_news
