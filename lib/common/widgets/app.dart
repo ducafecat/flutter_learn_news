@@ -5,11 +5,12 @@ import 'package:flutter_ducafecat_news/common/values/values.dart';
 Widget transparentAppBar({
   @required BuildContext context,
   List<Widget> actions,
+  Widget title,
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: Text(''),
+    title: title == null ? Text('') : title,
     leading: IconButton(
       icon: Icon(
         Icons.arrow_back,
