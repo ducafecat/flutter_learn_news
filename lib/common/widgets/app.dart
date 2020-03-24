@@ -10,7 +10,9 @@ Widget transparentAppBar({
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: title,
+    title: Center(
+      child: title,
+    ),
     leading: leading,
     actions: actions,
   );

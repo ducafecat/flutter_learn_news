@@ -105,17 +105,34 @@ class _ApplicationPageState extends State<ApplicationPage>
   // 顶部导航
   Widget _buildAppBar() {
     return transparentAppBar(
-      context: context,
-      title: Text(
-        _tabTitles[_page],
-        style: TextStyle(
-          color: AppColors.primaryText,
-          fontFamily: 'Montserrat',
-          fontSize: duSetFontSize(18.0),
-          fontWeight: FontWeight.w600,
+        context: context,
+        title: Text(
+          _tabTitles[_page],
+          style: TextStyle(
+            color: AppColors.primaryText,
+            fontFamily: 'Montserrat',
+            fontSize: duSetFontSize(18.0),
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      ),
-    );
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppColors.primaryText,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: AppColors.primaryText,
+            ),
+            onPressed: () {},
+          )
+        ]);
   }
 
   // 内容页
