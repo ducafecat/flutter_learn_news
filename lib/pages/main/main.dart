@@ -8,6 +8,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  // 分类菜单
+  // 推荐阅读
+  // 频道
+  // 新闻列表
+  // ad 广告条
+  // 邮件订阅
+
   @override
   Widget build(BuildContext context) {
     return Container(
