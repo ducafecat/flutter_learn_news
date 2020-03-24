@@ -14,6 +14,8 @@ Widget newsCategoriesWidget(
           child: Row(
             children: categories.map<Widget>((item) {
               return Container(
+                alignment: Alignment.center,
+                height: duSetHeight(52),
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: GestureDetector(
                   child: Text(

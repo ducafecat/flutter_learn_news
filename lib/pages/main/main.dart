@@ -87,17 +87,50 @@ class _MainPageState extends State<MainPage> {
   // }
 
   // 推荐阅读
+  Widget _buildRecommend() {
+    return Container(
+      height: duSetHeight(490),
+      color: Colors.amber,
+    );
+  }
+
   // 频道
+  Widget _buildChannels() {
+    return Container(
+      height: duSetHeight(137),
+      color: Colors.blueAccent,
+    );
+  }
+
   // 新闻列表
+  Widget _buildNewsList() {
+    return Container(
+      height: duSetHeight(161 * 5 + 100.0),
+      color: Colors.purple,
+    );
+  }
+
   // ad 广告条
   // 邮件订阅
+  Widget _buildEmailSubscribe() {
+    return Container(
+      height: duSetHeight(259),
+      color: Colors.brown,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        _buildCategories(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _buildCategories(),
+          _buildRecommend(),
+          _buildChannels(),
+          _buildNewsList(),
+          _buildEmailSubscribe(),
+        ],
+      ),
     );
   }
 }
