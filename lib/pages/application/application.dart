@@ -16,13 +16,16 @@ class ApplicationPage extends StatefulWidget {
 
 class _ApplicationPageState extends State<ApplicationPage>
     with SingleTickerProviderStateMixin {
+  // 当前 tab 页码
   int _page = 0;
+  // tab 页标题
   final List<String> _tabTitles = [
     'Welcome',
     'Cagegory',
     'Bookmarks',
     'Account'
   ];
+  // 页控制器
   PageController _pageController;
 
   // 底部导航项目
