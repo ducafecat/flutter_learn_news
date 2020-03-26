@@ -6,6 +6,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
+import 'package:flutter_ducafecat_news/pages/main/channels_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/recommend_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -46,32 +47,34 @@ class _MainPageState extends State<MainPage> {
 
   // 分类菜单
   Widget _buildCategories() {
-    return newsCategoriesWidget(
-      categories: _categories,
-      selCategoryCode: _selCategoryCode,
-      onTap: (CategoryResponseEntity item) {
-        setState(() {
-          _selCategoryCode = item.code;
-        });
-      },
-    );
+    return _categories == null
+        ? Container()
+        : newsCategoriesWidget(
+            categories: _categories,
+            selCategoryCode: _selCategoryCode,
+            onTap: (CategoryResponseEntity item) {
+              setState(() {
+                _selCategoryCode = item.code;
+              });
+            },
+          );
   }
 
   // 推荐阅读
   Widget _buildRecommend() {
     return _newsRecommend == null // 数据没到位，可以用骨架图展示
-        ? Container(
-            height: duSetHeight(490),
-          )
+        ? Container()
         : recommendWidget(_newsRecommend);
   }
 
   // 频道
   Widget _buildChannels() {
-    return Container(
-      height: duSetHeight(137),
-      color: Colors.blueAccent,
-    );
+    return _channels == null
+        ? Container()
+        : newsChannelsWidget(
+            channels: _channels,
+            onTap: (ChannelResponseEntity item) {},
+          );
   }
 
   // 新闻列表
