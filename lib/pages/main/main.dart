@@ -6,6 +6,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
+import 'package:flutter_ducafecat_news/pages/main/recommend_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainPage extends StatefulWidget {
@@ -55,39 +56,6 @@ class _MainPageState extends State<MainPage> {
       },
     );
   }
-  // 抽取前先实现业务
-  // Widget _buildCategories() {
-  //   return _categories == null
-  //       ? Container()
-  //       : SingleChildScrollView(
-  //           scrollDirection: Axis.horizontal,
-  //           child: Row(
-  //             children: _categories.map<Widget>((item) {
-  //               return Container(
-  //                 padding: EdgeInsets.symmetric(horizontal: 8),
-  //                 child: GestureDetector(
-  //                   child: Text(
-  //                     item.title,
-  //                     style: TextStyle(
-  //                       color: _selCategoryCode == item.code
-  //                           ? AppColors.secondaryElementText
-  //                           : AppColors.primaryText,
-  //                       fontSize: duSetFontSize(18),
-  //                       fontFamily: 'Montserrat',
-  //                       fontWeight: FontWeight.w600,
-  //                     ),
-  //                   ),
-  //                   onTap: () {
-  //                     setState(() {
-  //                       _selCategoryCode = item.code;
-  //                     });
-  //                   },
-  //                 ),
-  //               );
-  //             }).toList(),
-  //           ),
-  //         );
-  // }
 
   // 推荐阅读
   Widget _buildRecommend() {
@@ -95,101 +63,7 @@ class _MainPageState extends State<MainPage> {
         ? Container(
             height: duSetHeight(490),
           )
-        : Container(
-            height: duSetHeight(490),
-            // color: Colors.amber,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // 图
-                imageCached(
-                  _newsRecommend.thumbnail,
-                  height: 290,
-                  width: 335,
-                  margin: EdgeInsets.fromLTRB(
-                      duSetWidth(20), duSetWidth(20), duSetWidth(20), 0),
-                ),
-                // 作者
-                Container(
-                  margin:
-                      EdgeInsets.fromLTRB(duSetWidth(20), duSetWidth(14), 0, 0),
-                  child: Text(
-                    _newsRecommend.author,
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.thirdElementText,
-                      fontSize: duSetFontSize(14),
-                    ),
-                  ),
-                ),
-                // 标题
-                Container(
-                  margin: EdgeInsets.fromLTRB(
-                      duSetWidth(20), duSetWidth(10), duSetWidth(20), 0),
-                  child: Text(
-                    _newsRecommend.title,
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryText,
-                      fontSize: duSetFontSize(24),
-                      height: 1,
-                    ),
-                  ),
-                ),
-                // Spacer
-                Spacer(),
-                // 一行 3 列
-                Container(
-                  height: duSetHeight(19.0 + 20), // 字高度+底部Margin
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      // 分类
-                      Container(
-                        margin: EdgeInsets.only(left: duSetWidth(20)),
-                        child: Text(
-                          _newsRecommend.category,
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            fontWeight: FontWeight.normal,
-                            color: AppColors.secondaryElementText,
-                            fontSize: duSetFontSize(14),
-                            height: 1,
-                          ),
-                        ),
-                      ),
-                      // 添加时间
-                      Container(
-                        margin: EdgeInsets.only(left: duSetWidth(15)),
-                        child: Text(
-                          '•   ${TimelineUtil.formatByDateTime(_newsRecommend.addtime, locale: 'en', dayFormat: DayFormat.Simple)}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            fontWeight: FontWeight.normal,
-                            color: AppColors.thirdElementText,
-                            fontSize: duSetFontSize(14),
-                            height: 1,
-                          ),
-                        ),
-                      ),
-                      // 更多
-                      Spacer(),
-                      IconButton(
-                        icon: Icon(
-                          Icons.more_horiz,
-                          color: AppColors.primaryText,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
+        : recommendWidget(_newsRecommend);
   }
 
   // 频道
@@ -223,9 +97,13 @@ class _MainPageState extends State<MainPage> {
       child: Column(
         children: <Widget>[
           _buildCategories(),
+          Divider(height: 1),
           _buildRecommend(),
+          Divider(height: 1),
           _buildChannels(),
+          Divider(height: 1),
           _buildNewsList(),
+          Divider(height: 1),
           _buildEmailSubscribe(),
         ],
       ),
