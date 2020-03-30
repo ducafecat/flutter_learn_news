@@ -7,23 +7,19 @@ import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 // 推荐阅读
 Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
   return Container(
-    height: duSetHeight(490),
-    // color: Colors.amber,
+    margin: EdgeInsets.all(duSetWidth(20)),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 图
         imageCached(
           newsRecommend.thumbnail,
-          height: 290,
-          width: 335,
-          margin: EdgeInsets.fromLTRB(
-              duSetWidth(20), duSetWidth(20), duSetWidth(20), 0),
+          width: duSetWidth(335),
+          height: duSetHeight(290),
         ),
         // 作者
         Container(
-          margin: EdgeInsets.fromLTRB(duSetWidth(20), duSetWidth(14), 0, 0),
+          margin: EdgeInsets.only(top: duSetHeight(14)),
           child: Text(
             newsRecommend.author,
             style: TextStyle(
@@ -36,8 +32,7 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         ),
         // 标题
         Container(
-          margin: EdgeInsets.fromLTRB(
-              duSetWidth(20), duSetWidth(10), duSetWidth(20), 0),
+          margin: EdgeInsets.only(top: duSetHeight(10)),
           child: Text(
             newsRecommend.title,
             style: TextStyle(
@@ -49,17 +44,17 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
             ),
           ),
         ),
-        // Spacer
-        Spacer(),
         // 一行 3 列
         Container(
-          height: duSetHeight(19.0 + 20), // 字高度+底部Margin
+          margin: EdgeInsets.only(top: duSetHeight(10)),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // 分类
-              Container(
-                margin: EdgeInsets.only(left: duSetWidth(20)),
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 120,
+                ),
                 child: Text(
                   newsRecommend.category,
                   style: TextStyle(
@@ -69,13 +64,20 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
                     fontSize: duSetFontSize(14),
                     height: 1,
                   ),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
                 ),
               ),
               // 添加时间
               Container(
-                margin: EdgeInsets.only(left: duSetWidth(15)),
+                width: duSetWidth(15),
+              ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 120,
+                ),
                 child: Text(
-                  '•   ${TimelineUtil.formatByDateTime(newsRecommend.addtime, locale: 'en', dayFormat: DayFormat.Simple)}',
+                  '• ${TimelineUtil.formatByDateTime(newsRecommend.addtime, locale: 'en', dayFormat: DayFormat.Simple)}',
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,
@@ -83,16 +85,19 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
                     fontSize: duSetFontSize(14),
                     height: 1,
                   ),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
                 ),
               ),
               // 更多
               Spacer(),
-              IconButton(
-                icon: Icon(
+              InkWell(
+                child: Icon(
                   Icons.more_horiz,
                   color: AppColors.primaryText,
+                  size: 24,
                 ),
-                onPressed: () {},
+                onTap: () {},
               ),
             ],
           ),

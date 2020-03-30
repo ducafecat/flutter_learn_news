@@ -25,7 +25,12 @@ Widget imageCached(
         ),
       ),
     ),
-    placeholder: (context, url) => CircularProgressIndicator(),
+    placeholder: (context, url) {
+      return Container(
+        alignment: Alignment.center,
+        child: CircularProgressIndicator(),
+      );
+    },
     errorWidget: (context, url, error) => Icon(Icons.error),
   );
 }
