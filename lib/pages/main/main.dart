@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/apis.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
-import 'package:flutter_ducafecat_news/common/utils/timeline.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
-import 'package:flutter_ducafecat_news/common/values/values.dart';
-import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/channels_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/news_item_widget.dart';
+import 'package:flutter_ducafecat_news/pages/main/newsletter_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/recommend_widget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -19,6 +17,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  EasyRefreshController _controller;
+
   NewsPageListResponseEntity _newsPageList; // 新闻翻页
   NewsRecommendResponseEntity _newsRecommend; // 新闻推荐
   List<CategoryResponseEntity> _categories; // 分类
@@ -29,6 +29,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    _controller = EasyRefreshController();
     _loadAllData();
   }
 
@@ -46,6 +47,19 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  // 拉取推荐、新闻
+  _loadNewsData(categoryCode) async {
+    _selCategoryCode = categoryCode;
+    _newsRecommend = await NewsAPI.newsRecommend(
+        params: NewsRecommendRequestEntity(categoryCode: categoryCode));
+    _newsPageList = await NewsAPI.newsPageList(
+        params: NewsPageListRequestEntity(categoryCode: categoryCode));
+
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   // 分类菜单
   Widget _buildCategories() {
     return _categories == null
@@ -54,9 +68,7 @@ class _MainPageState extends State<MainPage> {
             categories: _categories,
             selCategoryCode: _selCategoryCode,
             onTap: (CategoryResponseEntity item) {
-              setState(() {
-                _selCategoryCode = item.code;
-              });
+              _loadNewsData(item.code);
             },
           );
   }
@@ -83,11 +95,9 @@ class _MainPageState extends State<MainPage> {
     return _newsPageList == null
         ? Container(
             height: duSetHeight(161 * 5 + 100.0),
-            // color: Colors.purple,
           )
         : Column(
             children: _newsPageList.items.map((item) {
-              // return Text('data');
               return Column(
                 children: <Widget>[
                   newsItem(item),
@@ -101,27 +111,33 @@ class _MainPageState extends State<MainPage> {
   // ad 广告条
   // 邮件订阅
   Widget _buildEmailSubscribe() {
-    return Container(
-      height: duSetHeight(259),
-      color: Colors.brown,
-    );
+    return newsletterWidget();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _buildCategories(),
-          Divider(height: 1),
-          // _buildRecommend(),
-          Divider(height: 1),
-          // _buildChannels(),
-          Divider(height: 1),
-          _buildNewsList(),
-          Divider(height: 1),
-          _buildEmailSubscribe(),
-        ],
+    return EasyRefresh(
+      enableControlFinishRefresh: true,
+      controller: _controller,
+      header: ClassicalHeader(),
+      onRefresh: () async {
+        await _loadNewsData(_selCategoryCode);
+        _controller.finishRefresh();
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _buildCategories(),
+            Divider(height: 1),
+            _buildRecommend(),
+            Divider(height: 1),
+            _buildChannels(),
+            Divider(height: 1),
+            _buildNewsList(),
+            Divider(height: 1),
+            _buildEmailSubscribe(),
+          ],
+        ),
       ),
     );
   }

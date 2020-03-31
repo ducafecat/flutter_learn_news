@@ -6,14 +6,15 @@ class NewsAPI {
   /// 翻页
   static Future<NewsPageListResponseEntity> newsPageList(
       {NewsPageListRequestEntity params}) async {
-    var response = await HttpUtil().get('/news', params: params);
+    var response = await HttpUtil().get('/news', params: params?.toJson());
     return NewsPageListResponseEntity.fromJson(response);
   }
 
   /// 推荐
   static Future<NewsRecommendResponseEntity> newsRecommend(
       {NewsRecommendRequestEntity params}) async {
-    var response = await HttpUtil().get('/news/recommend', params: params);
+    var response =
+        await HttpUtil().get('/news/recommend', params: params?.toJson());
     return NewsRecommendResponseEntity.fromJson(response);
   }
 
@@ -37,7 +38,7 @@ class NewsAPI {
 
   /// 标签列表
   static Future<List<TagResponseEntity>> tags({TagRequestEntity params}) async {
-    var response = await HttpUtil().get('/tags', params: params);
+    var response = await HttpUtil().get('/tags', params: params?.toJson());
     return response
         .map<TagResponseEntity>((item) => TagResponseEntity.fromJson(item))
         .toList();

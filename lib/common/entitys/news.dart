@@ -11,6 +11,13 @@ class NewsPageListRequestEntity {
     this.tag,
     this.keyword,
   });
+
+  Map<String, dynamic> toJson() => {
+        "categoryCode": categoryCode,
+        "channelCode": channelCode,
+        "tag": tag,
+        "keyword": keyword,
+      };
 }
 
 /// 新闻分页 response
@@ -101,6 +108,13 @@ class NewsRecommendRequestEntity {
     this.tag,
     this.keyword,
   });
+
+  Map<String, dynamic> toJson() => {
+        "categoryCode": categoryCode,
+        "channelCode": channelCode,
+        "tag": tag,
+        "keyword": keyword,
+      };
 }
 
 /// 新闻推荐 response
