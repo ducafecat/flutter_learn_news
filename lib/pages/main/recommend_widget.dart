@@ -77,7 +77,7 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
                   maxWidth: 120,
                 ),
                 child: Text(
-                  '• ${TimelineUtil.formatByDateTime(newsRecommend.addtime, locale: 'en', dayFormat: DayFormat.Simple)}',
+                  '• ${duTimeLineFormat(newsRecommend.addtime)}',
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,

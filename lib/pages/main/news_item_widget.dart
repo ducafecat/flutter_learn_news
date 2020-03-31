@@ -85,10 +85,10 @@ Widget newsItem(NewsItem item) {
                     ),
                     ConstrainedBox(
                       constraints: BoxConstraints(
-                        maxWidth: duSetWidth(60),
+                        maxWidth: duSetWidth(100),
                       ),
                       child: Text(
-                        '• ${TimelineUtil.formatByDateTime(item.addtime, locale: 'en', dayFormat: DayFormat.Simple)}',
+                        '• ${duTimeLineFormat(item.addtime)}',
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           fontWeight: FontWeight.normal,
