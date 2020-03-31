@@ -17,7 +17,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  EasyRefreshController _controller;
+  EasyRefreshController _controller; // EasyRefresh控制器
 
   NewsPageListResponseEntity _newsPageList; // 新闻翻页
   NewsRecommendResponseEntity _newsRecommend; // 新闻推荐
@@ -35,10 +35,18 @@ class _MainPageState extends State<MainPage> {
 
   // 读取所有数据
   _loadAllData() async {
-    _categories = await NewsAPI.categories();
-    _channels = await NewsAPI.channels();
-    _newsRecommend = await NewsAPI.newsRecommend();
-    _newsPageList = await NewsAPI.newsPageList();
+    _categories = await NewsAPI.categories(
+      cacheDisk: true,
+    );
+    _channels = await NewsAPI.channels(
+      cacheDisk: true,
+    );
+    _newsRecommend = await NewsAPI.newsRecommend(
+      cacheDisk: true,
+    );
+    _newsPageList = await NewsAPI.newsPageList(
+      cacheDisk: true,
+    );
 
     _selCategoryCode = _categories.first.code;
 
@@ -48,12 +56,21 @@ class _MainPageState extends State<MainPage> {
   }
 
   // 拉取推荐、新闻
-  _loadNewsData(categoryCode) async {
+  _loadNewsData(
+    categoryCode, {
+    bool refresh = false,
+  }) async {
     _selCategoryCode = categoryCode;
     _newsRecommend = await NewsAPI.newsRecommend(
-        params: NewsRecommendRequestEntity(categoryCode: categoryCode));
+      params: NewsRecommendRequestEntity(categoryCode: categoryCode),
+      refresh: refresh,
+      cacheDisk: true,
+    );
     _newsPageList = await NewsAPI.newsPageList(
-        params: NewsPageListRequestEntity(categoryCode: categoryCode));
+      params: NewsPageListRequestEntity(categoryCode: categoryCode),
+      refresh: refresh,
+      cacheDisk: true,
+    );
 
     if (mounted) {
       setState(() {});
@@ -121,7 +138,10 @@ class _MainPageState extends State<MainPage> {
       controller: _controller,
       header: ClassicalHeader(),
       onRefresh: () async {
-        await _loadNewsData(_selCategoryCode);
+        await _loadNewsData(
+          _selCategoryCode,
+          refresh: true,
+        );
         _controller.finishRefresh();
       },
       child: SingleChildScrollView(

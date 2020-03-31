@@ -213,6 +213,7 @@ class HttpUtil {
   /// noCache 是否不缓存 默认 true
   /// list 是否列表 默认 false
   /// cacheKey 缓存key
+  /// cacheDisk 是否磁盘缓存
   Future get(
     String path, {
     dynamic params,
@@ -221,6 +222,7 @@ class HttpUtil {
     bool noCache = !CACHE_ENABLE,
     bool list = false,
     String cacheKey,
+    bool cacheDisk = false,
   }) async {
     try {
       Options requestOptions = options ?? Options();
@@ -229,6 +231,7 @@ class HttpUtil {
         "noCache": noCache,
         "list": list,
         "cacheKey": cacheKey,
+        "cacheDisk": cacheDisk,
       });
       Map<String, dynamic> _authorization = getAuthorizationHeader();
       if (_authorization != null) {
