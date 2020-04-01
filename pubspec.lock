@@ -219,6 +219,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.0"
+  pk_skeleton:
+    dependency: "direct main"
+    description:
+      name: pk_skeleton
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   platform:
     dependency: transitive
     description:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/apis.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
+import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/pages/main/ad_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/channels_widget.dart';
@@ -147,32 +148,34 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh(
-      enableControlFinishRefresh: true,
-      controller: _controller,
-      header: ClassicalHeader(),
-      onRefresh: () async {
-        await _loadNewsData(
-          _selCategoryCode,
-          refresh: true,
-        );
-        _controller.finishRefresh();
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _buildCategories(),
-            Divider(height: 1),
-            _buildRecommend(),
-            Divider(height: 1),
-            _buildChannels(),
-            Divider(height: 1),
-            _buildNewsList(),
-            Divider(height: 1),
-            _buildEmailSubscribe(),
-          ],
-        ),
-      ),
-    );
+    return _newsPageList == null
+        ? cardListSkeleton()
+        : EasyRefresh(
+            enableControlFinishRefresh: true,
+            controller: _controller,
+            header: ClassicalHeader(),
+            onRefresh: () async {
+              await _loadNewsData(
+                _selCategoryCode,
+                refresh: true,
+              );
+              _controller.finishRefresh();
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  _buildCategories(),
+                  Divider(height: 1),
+                  _buildRecommend(),
+                  Divider(height: 1),
+                  _buildChannels(),
+                  Divider(height: 1),
+                  _buildNewsList(),
+                  Divider(height: 1),
+                  _buildEmailSubscribe(),
+                ],
+              ),
+            ),
+          );
   }
 }

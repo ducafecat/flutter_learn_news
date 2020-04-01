@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pk_skeleton/pk_skeleton.dart';
 
 /// 透明背景 AppBar
 Widget transparentAppBar({
@@ -15,5 +16,14 @@ Widget transparentAppBar({
     ),
     leading: leading,
     actions: actions,
+  );
+}
+
+/// 骨架屏-卡片
+Widget cardListSkeleton() {
+  return PKCardListSkeleton(
+    isCircularImage: true,
+    isBottomLinesActive: false,
+    length: 10,
   );
 }
