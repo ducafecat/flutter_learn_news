@@ -3,6 +3,7 @@ import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 
+/// 频道导航
 Widget newsChannelsWidget({
   List<ChannelResponseEntity> channels,
   Function(ChannelResponseEntity) onTap,

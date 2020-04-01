@@ -3,6 +3,7 @@ import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 
+/// 分类导航
 Widget newsCategoriesWidget({
   List<CategoryResponseEntity> categories,
   String selCategoryCode,

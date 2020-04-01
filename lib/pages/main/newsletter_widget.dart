@@ -4,6 +4,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 
+/// 邮件订阅
 Widget newsletterWidget() {
   return Container(
     margin: EdgeInsets.all(duSetWidth(20)),

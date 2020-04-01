@@ -4,7 +4,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 
-// 推荐阅读
+/// 推荐阅读
 Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
   return Container(
     margin: EdgeInsets.all(duSetWidth(20)),

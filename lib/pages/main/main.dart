@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/apis.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
+import 'package:flutter_ducafecat_news/pages/main/ad_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/channels_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/news_item_widget.dart';
@@ -115,11 +116,24 @@ class _MainPageState extends State<MainPage> {
           )
         : Column(
             children: _newsPageList.items.map((item) {
-              return Column(
-                children: <Widget>[
-                  newsItem(item),
+              // 新闻行
+              List<Widget> widgets = <Widget>[
+                newsItem(item),
+                Divider(height: 1),
+              ];
+
+              // 每 5 条 显示广告
+              int index = _newsPageList.items.indexOf(item);
+              if (((index + 1) % 5) == 0) {
+                widgets.addAll(<Widget>[
+                  adWidget(),
                   Divider(height: 1),
-                ],
+                ]);
+              }
+
+              // 返回
+              return Column(
+                children: widgets,
               );
             }).toList(),
           );

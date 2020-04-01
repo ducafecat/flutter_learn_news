@@ -4,6 +4,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 
+/// 新闻行 Item
 Widget newsItem(NewsItem item) {
   return Container(
     height: duSetHeight(161),
