@@ -38,13 +38,16 @@ class _SignInPageState extends State<SignInPage> {
     //   return;
     // }
 
-    // UserLoginRequestEntity params = UserLoginRequestEntity(
-    //   email: _emailController.value.text,
-    //   password: duSHA256(_passController.value.text),
-    // );
+    UserLoginRequestEntity params = UserLoginRequestEntity(
+      email: _emailController.value.text,
+      password: duSHA256(_passController.value.text),
+    );
 
-    // UserLoginResponseEntity userProfile = await UserAPI.login(params: params);
-    // Global.saveProfile(userProfile);
+    UserLoginResponseEntity userProfile = await UserAPI.login(
+      context: context,
+      params: params,
+    );
+    Global.saveProfile(userProfile);
 
     // List<NewsIndexResponseEntity> newsList = await NewsAPI.index();
     // print(newsList.length);

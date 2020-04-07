@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key key}) : super(key: key);
@@ -105,10 +104,6 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 高度去掉 顶部、底部 导航
-    ScreenUtil.init(context,
-        width: 375, height: 812 - 44 - 34, allowFontScaling: true);
-
     return Scaffold(
       body: Center(
         child: Column(

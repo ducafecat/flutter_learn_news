@@ -51,6 +51,9 @@ dependencies:
   # sha
   crypto: ^2.1.3
 
+  # 状态管理
+  provider: ^4.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
