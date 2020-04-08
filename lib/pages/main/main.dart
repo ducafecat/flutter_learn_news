@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/apis.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
+import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/pages/main/ad_widget.dart';
 import 'package:flutter_ducafecat_news/pages/main/categories_widget.dart';
@@ -33,6 +36,19 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     _controller = EasyRefreshController();
     _loadAllData();
+    _loadLatestWithDiskCache();
+  }
+
+  // 如果有磁盘缓存，延迟3秒拉取更新档案
+  _loadLatestWithDiskCache() {
+    if (CACHE_ENABLE == true) {
+      var cacheData = StorageUtil().getJSON(STORAGE_INDEX_NEWS_CACHE_KEY);
+      if (cacheData != null) {
+        Timer(Duration(seconds: 3), () {
+          _controller.callRefresh();
+        });
+      }
+    }
   }
 
   // 读取所有数据

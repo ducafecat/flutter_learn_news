@@ -20,8 +20,6 @@ Future deleteAuthentication() async {
 /// 重新登录
 Future goLoginPage(BuildContext context) async {
   await deleteAuthentication();
-  Timer(Duration(seconds: 3), () {
-    Navigator.pushNamedAndRemoveUntil(
-        context, "/sign-in", (Route<dynamic> route) => false);
-  });
+  Navigator.pushNamedAndRemoveUntil(
+      context, "/sign-in", (Route<dynamic> route) => false);
 }

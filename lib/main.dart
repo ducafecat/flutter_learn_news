@@ -13,7 +13,16 @@ void main() => Global.init().then((e) => runApp(
             value: Global.appState,
           ),
         ],
-        child: MyApp(),
+        child: Consumer<AppState>(builder: (context, appState, _) {
+          if (appState.isGrayFilter) {
+            return ColorFiltered(
+              colorFilter: ColorFilter.mode(Colors.white, BlendMode.color),
+              child: MyApp(),
+            );
+          } else {
+            return MyApp();
+          }
+        }),
       ),
     ));
 
@@ -26,16 +35,5 @@ class MyApp extends StatelessWidget {
       routes: staticRoutes,
       debugShowCheckedModeBanner: false,
     );
-
-    // return Consumer<AppState>(
-    //   builder: (context, appState, _) {
-    //     return MaterialApp(
-    //       title: 'ducafecat.tech',
-    //       home: appState.isLogin == true ? ApplicationPage() : SignInPage(),
-    //       routes: staticRoutes,
-    //       debugShowCheckedModeBanner: false,
-    //     );
-    //   },
-    // );
   }
 }

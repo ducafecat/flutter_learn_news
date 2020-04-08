@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 
 /// 系统相应状态
 class AppState with ChangeNotifier {
-  bool _isLogin;
+  bool _isGrayFilter;
 
-  get isLogin => _isLogin;
-  set isLogin(val) => _isLogin = val;
+  get isGrayFilter => _isGrayFilter;
 
-  AppState({bool isLogin = false}) {
-    this._isLogin = isLogin;
+  AppState({bool isGrayFilter = false}) {
+    this._isGrayFilter = isGrayFilter;
   }
 
-  // 设置是否登录
-  userLogout() {
-    _isLogin = false;
+  // 切换灰色滤镜
+  switchGrayFilter() {
+    _isGrayFilter = !_isGrayFilter;
     notifyListeners();
   }
 }

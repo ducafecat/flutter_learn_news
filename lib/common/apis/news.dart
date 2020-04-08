@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
+import 'package:flutter_ducafecat_news/common/values/values.dart';
 
 /// 新闻
 class NewsAPI {
@@ -18,6 +19,7 @@ class NewsAPI {
       params: params?.toJson(),
       refresh: refresh,
       cacheDisk: cacheDisk,
+      cacheKey: STORAGE_INDEX_NEWS_CACHE_KEY,
     );
     return NewsPageListResponseEntity.fromJson(response);
   }
