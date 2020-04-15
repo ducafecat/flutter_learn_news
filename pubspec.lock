@@ -111,6 +111,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0"
+  flutter_modular:
+    dependency: "direct main"
+    description:
+      name: flutter_modular
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.2"
   flutter_screenutil:
     dependency: "direct main"
     description:
