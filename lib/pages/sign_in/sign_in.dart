@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/apis.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
+import 'package:flutter_ducafecat_news/common/router/router.gr.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
@@ -21,10 +23,7 @@ class _SignInPageState extends State<SignInPage> {
 
   // 跳转 注册界面
   _handleNavSignUp() {
-    Navigator.pushNamed(
-      context,
-      "/sign-up",
-    );
+    ExtendedNavigator.rootNavigator.pushNamed(Routes.signUpPageRoute);
   }
 
   // 执行登录操作
@@ -49,13 +48,7 @@ class _SignInPageState extends State<SignInPage> {
     );
     Global.saveProfile(userProfile);
 
-    // List<NewsIndexResponseEntity> newsList = await NewsAPI.index();
-    // print(newsList.length);
-
-    Navigator.pushNamed(
-      context,
-      "/app",
-    );
+    ExtendedNavigator.rootNavigator.pushNamed(Routes.applicationPageRoute);
   }
 
   ///////////////////////////////

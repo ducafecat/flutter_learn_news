@@ -31,6 +31,12 @@ Tools • Dart 2.7.0
 iconfont_builder --from ./assets/fonts --to ./lib/common/utils/iconfont.dart
 ```
 
+## 生成路由
+
+```
+flutter packages pub run build_runner build
+```
+
 ## 代码仓
 
 https://github.com/ducafecat/flutter_learn_news

@@ -20,7 +20,7 @@ class Global {
   /// 是否离线登录
   static bool isOfflineLogin = false;
 
-  /// 应用状态
+  /// 应用状态,
   static AppState appState = AppState();
 
   /// 是否 release
