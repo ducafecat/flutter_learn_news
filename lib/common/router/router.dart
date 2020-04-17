@@ -15,7 +15,7 @@ Widget zoomInTransition(BuildContext context, Animation<double> animation,
   return ScaleTransition(scale: animation, child: child);
 }
 
-@MaterialAutoRouter()
+@MaterialAutoRouter(generateNavigationHelperExtension: true)
 class $AppRouter {
   @initial
   IndexPage indexPageRoute;
@@ -27,8 +27,10 @@ class $AppRouter {
   SignUpPage signUpPageRoute;
 
   @GuardedBy([AuthGuard])
+  @CustomRoute(transitionsBuilder: zoomInTransition)
   ApplicationPage applicationPageRoute;
 
   @GuardedBy([AuthGuard])
+  @CustomRoute(transitionsBuilder: zoomInTransition)
   DetailsPage detailsPageRoute;
 }

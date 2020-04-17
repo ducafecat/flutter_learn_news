@@ -3,7 +3,8 @@ import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 
 class DetailsPage extends StatefulWidget {
-  DetailsPage({Key key}) : super(key: key);
+  final String cid;
+  DetailsPage({Key key, this.cid}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
