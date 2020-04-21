@@ -12,7 +12,6 @@ import 'package:flutter_ducafecat_news/pages/welcome/welcome.dart';
 import 'package:flutter_ducafecat_news/pages/sign_in/sign_in.dart';
 import 'package:flutter_ducafecat_news/pages/sign_up/sign_up.dart';
 import 'package:flutter_ducafecat_news/pages/application/application.dart';
-import 'package:flutter_ducafecat_news/common/router/router.dart';
 import 'package:flutter_ducafecat_news/common/router/auth_grard.dart';
 import 'package:flutter_ducafecat_news/pages/details/details.dart';
 
@@ -84,11 +83,9 @@ class AppRouter extends RouterBase {
         }
         final typedArgs =
             args as ApplicationPageArguments ?? ApplicationPageArguments();
-        return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
-              ApplicationPage(key: typedArgs.key),
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ApplicationPage(key: typedArgs.key),
           settings: settings,
-          transitionsBuilder: zoomInTransition,
         );
       case Routes.detailsPageRoute:
         if (hasInvalidArgs<DetailsPageArguments>(args)) {
@@ -96,11 +93,9 @@ class AppRouter extends RouterBase {
         }
         final typedArgs =
             args as DetailsPageArguments ?? DetailsPageArguments();
-        return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
-              DetailsPage(key: typedArgs.key, cid: typedArgs.cid),
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => DetailsPage(key: typedArgs.key, url: typedArgs.url),
           settings: settings,
-          transitionsBuilder: zoomInTransition,
         );
       default:
         return unknownRoutePage(settings.name);
@@ -145,8 +140,8 @@ class ApplicationPageArguments {
 //DetailsPage arguments holder class
 class DetailsPageArguments {
   final Key key;
-  final String cid;
-  DetailsPageArguments({this.key, this.cid});
+  final String url;
+  DetailsPageArguments({this.key, this.url});
 }
 
 //**************************************************************************
@@ -177,8 +172,8 @@ extension AppRouterNavigationHelperMethods on ExtendedNavigatorState {
       pushNamed(Routes.applicationPageRoute,
           arguments: ApplicationPageArguments(key: key), onReject: onReject);
   Future pushDetailsPageRoute(
-          {Key key, String cid, OnNavigationRejected onReject}) =>
+          {Key key, String url, OnNavigationRejected onReject}) =>
       pushNamed(Routes.detailsPageRoute,
-          arguments: DetailsPageArguments(key: key, cid: cid),
+          arguments: DetailsPageArguments(key: key, url: url),
           onReject: onReject);
 }

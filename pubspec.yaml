@@ -57,6 +57,9 @@ dependencies:
   # 状态管理
   provider: ^4.0.4
 
+  # webView
+  webview_flutter: ^0.3.19
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

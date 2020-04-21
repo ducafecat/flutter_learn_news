@@ -24,13 +24,12 @@ class $AppRouter {
 
   SignInPage signInPageRoute;
 
+  // @CustomRoute(transitionsBuilder: zoomInTransition)
   SignUpPage signUpPageRoute;
 
   @GuardedBy([AuthGuard])
-  @CustomRoute(transitionsBuilder: zoomInTransition)
   ApplicationPage applicationPageRoute;
 
   @GuardedBy([AuthGuard])
-  @CustomRoute(transitionsBuilder: zoomInTransition)
   DetailsPage detailsPageRoute;
 }
