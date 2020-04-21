@@ -20,12 +20,3 @@ Widget transparentAppBar({
     actions: actions,
   );
 }
-
-/// 骨架屏-卡片
-Widget cardListSkeleton() {
-  return PKCardListSkeleton(
-    isCircularImage: true,
-    isBottomLinesActive: false,
-    length: 10,
-  );
-}

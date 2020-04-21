@@ -58,7 +58,10 @@ dependencies:
   provider: ^4.0.4
 
   # webView
-  webview_flutter: ^0.3.19
+  webview_flutter: ^0.3.20+2
+
+  # loading
+  loading_animations: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
+import 'package:flutter_ducafecat_news/common/router/router.gr.dart';
 
 /// 新闻行 Item
 Widget newsItem(NewsItem item) {
@@ -14,10 +16,15 @@ Widget newsItem(NewsItem item) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 图
-        imageCached(
-          item.thumbnail,
-          width: duSetWidth(121),
-          height: duSetWidth(121),
+        InkWell(
+          onTap: () {
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(url: item.url);
+          },
+          child: imageCached(
+            item.thumbnail,
+            width: duSetWidth(121),
+            height: duSetWidth(121),
+          ),
         ),
         // 右侧
         SizedBox(
@@ -40,19 +47,25 @@ Widget newsItem(NewsItem item) {
                 ),
               ),
               // 标题
-              Container(
-                margin: EdgeInsets.only(top: duSetHeight(10)),
-                child: Text(
-                  item.title,
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.primaryText,
-                    fontSize: duSetFontSize(16),
-                    height: 1,
+              InkWell(
+                onTap: () {
+                  ExtendedNavigator.rootNavigator
+                      .pushDetailsPageRoute(url: item.url);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: duSetHeight(10)),
+                  child: Text(
+                    item.title,
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primaryText,
+                      fontSize: duSetFontSize(16),
+                      height: 1,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 3,
                   ),
-                  overflow: TextOverflow.clip,
-                  maxLines: 3,
                 ),
               ),
               // Spacer

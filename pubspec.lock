@@ -331,6 +331,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.1"
+  loading_animations:
+    dependency: "direct main"
+    description:
+      name: loading_animations
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.0"
   logging:
     dependency: transitive
     description:
@@ -657,7 +664,7 @@ packages:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.19+9"
+    version: "0.3.20+2"
   xml:
     dependency: transitive
     description:

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+  bool _isPageFinished = false;
 
   // 顶部导航
   Widget _buildAppBar() {
@@ -37,29 +39,14 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             onPressed: () {},
           ),
-          shareButton(),
+          IconButton(
+            icon: Icon(
+              Icons.share,
+              color: AppColors.primaryText,
+            ),
+            onPressed: () {},
+          ),
         ]);
-  }
-
-  Widget shareButton() {
-    return FutureBuilder<WebViewController>(
-        future: _controller.future,
-        builder: (BuildContext context,
-            AsyncSnapshot<WebViewController> controller) {
-          if (controller.hasData) {
-            return IconButton(
-              icon: Icon(
-                Icons.share,
-                color: AppColors.primaryText,
-              ),
-              onPressed: () async {
-                await controller.data.evaluateJavascript(
-                    'invoke.postMessage(document.body.scrollHeight);');
-              },
-            );
-          }
-          return Container();
-        });
   }
 
   // web内容
@@ -70,32 +57,46 @@ class _DetailsPageState extends State<DetailsPage> {
       onWebViewCreated: (WebViewController webViewController) async {
         _controller.complete(webViewController);
       },
-      javascriptChannels: <JavascriptChannel>[
-        _toasterJavascriptChannel(context),
-      ].toSet(),
       navigationDelegate: (NavigationRequest request) {
-        if (request.url.startsWith('js://webview')) {
+        // 禁止点击去别的url
+        if (request.url != widget.url) {
           return NavigationDecision.prevent;
         }
         return NavigationDecision.navigate;
       },
       onPageStarted: (String url) {},
-      onPageFinished: (String url) async {},
+      onPageFinished: (String url) {
+        setState(() {
+          _isPageFinished = true;
+        });
+        _removeAd();
+      },
       gestureNavigationEnabled: true,
     );
   }
 
-  // 绑定js对象
-  JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'invoke', onMessageReceived: (JavascriptMessage message) {});
+  // 删除广告
+  _removeAd() async {
+    await (await _controller.future).evaluateJavascript('''
+        document.getElementById('module-engadget-deeplink-top-ad').style.display="none";
+        document.getElementById('module-engadget-deeplink-streams').style.display="none";
+        ''');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildWebView(),
-    );
+        appBar: _buildAppBar(),
+        body: Stack(
+          children: <Widget>[
+            _buildWebView(),
+            _isPageFinished == true
+                ? Container()
+                : Align(
+                    alignment: Alignment.center,
+                    child: LoadingBouncingGrid.square(),
+                  ),
+          ],
+        ));
   }
 }

@@ -14,10 +14,16 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 图
-        imageCached(
-          newsRecommend.thumbnail,
-          width: duSetWidth(335),
-          height: duSetHeight(290),
+        InkWell(
+          onTap: () {
+            ExtendedNavigator.rootNavigator
+                .pushDetailsPageRoute(url: newsRecommend.url);
+          },
+          child: imageCached(
+            newsRecommend.thumbnail,
+            width: duSetWidth(335),
+            height: duSetHeight(290),
+          ),
         ),
         // 作者
         Container(
