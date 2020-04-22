@@ -16,8 +16,8 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         // 图
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator
-                .pushDetailsPageRoute(url: newsRecommend.url);
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(
+                title: newsRecommend.title, url: newsRecommend.url);
           },
           child: imageCached(
             newsRecommend.thumbnail,
@@ -41,8 +41,8 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         // 标题
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator
-                .pushDetailsPageRoute(url: newsRecommend.url);
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(
+                title: newsRecommend.title, url: newsRecommend.url);
           },
           child: Container(
             margin: EdgeInsets.only(top: duSetHeight(10)),

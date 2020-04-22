@@ -94,7 +94,8 @@ class AppRouter extends RouterBase {
         final typedArgs =
             args as DetailsPageArguments ?? DetailsPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => DetailsPage(key: typedArgs.key, url: typedArgs.url),
+          builder: (_) => DetailsPage(
+              key: typedArgs.key, title: typedArgs.title, url: typedArgs.url),
           settings: settings,
         );
       default:
@@ -140,8 +141,9 @@ class ApplicationPageArguments {
 //DetailsPage arguments holder class
 class DetailsPageArguments {
   final Key key;
+  final String title;
   final String url;
-  DetailsPageArguments({this.key, this.url});
+  DetailsPageArguments({this.key, this.title, this.url});
 }
 
 //**************************************************************************
@@ -172,8 +174,8 @@ extension AppRouterNavigationHelperMethods on ExtendedNavigatorState {
       pushNamed(Routes.applicationPageRoute,
           arguments: ApplicationPageArguments(key: key), onReject: onReject);
   Future pushDetailsPageRoute(
-          {Key key, String url, OnNavigationRejected onReject}) =>
+          {Key key, String title, String url, OnNavigationRejected onReject}) =>
       pushNamed(Routes.detailsPageRoute,
-          arguments: DetailsPageArguments(key: key, url: url),
+          arguments: DetailsPageArguments(key: key, title: title, url: url),
           onReject: onReject);
 }

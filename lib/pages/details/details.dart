@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:loading_animations/loading_animations.dart';
+import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
+  final String title;
   final String url;
-  DetailsPage({Key key, this.url}) : super(key: key);
+  DetailsPage({Key key, this.title, this.url}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -44,7 +46,9 @@ class _DetailsPageState extends State<DetailsPage> {
               Icons.share,
               color: AppColors.primaryText,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Share.share('${widget.title} ${widget.url}');
+            },
           ),
         ]);
   }
@@ -64,13 +68,16 @@ class _DetailsPageState extends State<DetailsPage> {
         }
         return NavigationDecision.navigate;
       },
-      onPageStarted: (String url) {},
-      onPageFinished: (String url) {
-        setState(() {
-          _isPageFinished = true;
+      onPageStarted: (String url) {
+        // 延迟清除广告、推荐
+        Timer(Duration(seconds: 3), () {
+          setState(() {
+            _isPageFinished = true;
+          });
+          _removeAd();
         });
-        _removeAd();
       },
+      onPageFinished: (String url) {},
       gestureNavigationEnabled: true,
     );
   }
@@ -78,8 +85,18 @@ class _DetailsPageState extends State<DetailsPage> {
   // 删除广告
   _removeAd() async {
     await (await _controller.future).evaluateJavascript('''
-        document.getElementById('module-engadget-deeplink-top-ad').style.display="none";
-        document.getElementById('module-engadget-deeplink-streams').style.display="none";
+        function removeElement(_element){
+          var _parentElement = _element.parentNode;
+          if(_parentElement){
+             _parentElement.removeChild(_element);
+          }
+        }
+
+        var el = document.getElementById('module-engadget-deeplink-top-ad');
+        removeElement(el);
+
+        el = document.getElementById('module-engadget-deeplink-streams');
+        removeElement(el);
         ''');
   }
 
