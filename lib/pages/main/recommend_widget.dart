@@ -7,7 +7,7 @@ import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 
 /// 推荐阅读
-Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
+Widget recommendWidget(NewsItem item) {
   return Container(
     margin: EdgeInsets.all(duSetWidth(20)),
     child: Column(
@@ -16,11 +16,10 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         // 图
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(
-                title: newsRecommend.title, url: newsRecommend.url);
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(item: item);
           },
           child: imageCached(
-            newsRecommend.thumbnail,
+            item.thumbnail,
             width: duSetWidth(335),
             height: duSetHeight(290),
           ),
@@ -29,7 +28,7 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         Container(
           margin: EdgeInsets.only(top: duSetHeight(14)),
           child: Text(
-            newsRecommend.author,
+            item.author,
             style: TextStyle(
               fontFamily: 'Avenir',
               fontWeight: FontWeight.normal,
@@ -41,13 +40,12 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         // 标题
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(
-                title: newsRecommend.title, url: newsRecommend.url);
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(item: item);
           },
           child: Container(
             margin: EdgeInsets.only(top: duSetHeight(10)),
             child: Text(
-              newsRecommend.title,
+              item.title,
               style: TextStyle(
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w600,
@@ -70,7 +68,7 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
                   maxWidth: 120,
                 ),
                 child: Text(
-                  newsRecommend.category,
+                  item.category,
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,
@@ -91,7 +89,7 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
                   maxWidth: 120,
                 ),
                 child: Text(
-                  '• ${duTimeLineFormat(newsRecommend.addtime)}',
+                  '• ${duTimeLineFormat(item.addtime)}',
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,

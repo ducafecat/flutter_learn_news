@@ -18,8 +18,7 @@ Widget newsItem(NewsItem item) {
         // 图
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator
-                .pushDetailsPageRoute(title: item.title, url: item.url);
+            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(item: item);
           },
           child: imageCached(
             item.thumbnail,
@@ -51,7 +50,7 @@ Widget newsItem(NewsItem item) {
               InkWell(
                 onTap: () {
                   ExtendedNavigator.rootNavigator
-                      .pushDetailsPageRoute(title: item.title, url: item.url);
+                      .pushDetailsPageRoute(item: item);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: duSetHeight(10)),

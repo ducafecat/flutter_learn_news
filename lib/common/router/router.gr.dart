@@ -14,6 +14,8 @@ import 'package:flutter_ducafecat_news/pages/sign_up/sign_up.dart';
 import 'package:flutter_ducafecat_news/pages/application/application.dart';
 import 'package:flutter_ducafecat_news/common/router/auth_grard.dart';
 import 'package:flutter_ducafecat_news/pages/details/details.dart';
+import 'package:flutter_ducafecat_news/common/router/router.dart';
+import 'package:flutter_ducafecat_news/common/entitys/news.dart';
 
 abstract class Routes {
   static const indexPageRoute = '/';
@@ -93,10 +95,11 @@ class AppRouter extends RouterBase {
         }
         final typedArgs =
             args as DetailsPageArguments ?? DetailsPageArguments();
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => DetailsPage(
-              key: typedArgs.key, title: typedArgs.title, url: typedArgs.url),
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (ctx, animation, secondaryAnimation) =>
+              DetailsPage(key: typedArgs.key, item: typedArgs.item),
           settings: settings,
+          transitionsBuilder: zoomInTransition,
         );
       default:
         return unknownRoutePage(settings.name);
@@ -141,9 +144,8 @@ class ApplicationPageArguments {
 //DetailsPage arguments holder class
 class DetailsPageArguments {
   final Key key;
-  final String title;
-  final String url;
-  DetailsPageArguments({this.key, this.title, this.url});
+  final NewsItem item;
+  DetailsPageArguments({this.key, this.item});
 }
 
 //**************************************************************************
@@ -174,8 +176,8 @@ extension AppRouterNavigationHelperMethods on ExtendedNavigatorState {
       pushNamed(Routes.applicationPageRoute,
           arguments: ApplicationPageArguments(key: key), onReject: onReject);
   Future pushDetailsPageRoute(
-          {Key key, String title, String url, OnNavigationRejected onReject}) =>
+          {Key key, NewsItem item, OnNavigationRejected onReject}) =>
       pushNamed(Routes.detailsPageRoute,
-          arguments: DetailsPageArguments(key: key, title: title, url: url),
+          arguments: DetailsPageArguments(key: key, item: item),
           onReject: onReject);
 }
