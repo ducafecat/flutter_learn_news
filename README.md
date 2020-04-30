@@ -1,29 +1,66 @@
 # Flutter 新闻客户端
 
+## 项目目标
+
+通过新闻APP业务构建一套精简的代码模板。
+
 ## SDK 环境
 
 ```
-flutter --version
-Flutter 1.12.13+hotfix.8 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 0b8abb4724 (5 weeks ago) • 2020-02-11 11:44:36 -0800
-Engine • revision e1e6ced81d
-Tools • Dart 2.7.0
+Flutter 1.12.13+hotfix.9 
+Tools • Dart 2.7.2
 ```
 
-## 技术栈
+## 界面适配 IOS、Android
 
-- flutter_screenutil 设计稿适配
-- fluttertoast 提示框
+| IOS                                          | Android                                              |
+| -------------------------------------------- | ---------------------------------------------------- |
+| ![ios-features](doc/images/ios-features.png) | ![android-features](doc/images/android-features.png) |
+| ![ios-login](doc/images/ios-login.png)       | ![android-login](doc/images/android-login.png)       |
+| ![ios-signup](doc/images/ios-signup.png)     | ![android-signup](doc/images/android-signup.png)     |
+| ![ios-index](doc/images/ios-index.png)       | ![android-index](doc/images/android-index.png)       |
+| ![ios-details](doc/images/ios-details.png)   | ![android-details](doc/images/android-details.png)   |
+
+## 技术点
+
+![technical](doc/images/technical.png)
+
+## 目录结构
+
+![configuration](doc/images/configuration.png)
+
+## dependencies 依赖包
+
+| 名称                 | 说明         |
+| -------------------- | ------------ |
+| auto_route           | 路由管理     |
+| intl                 | 日期格式     |
+| flutter_screenutil   | 屏幕适配     |
+| flutter_easyrefresh  | 上下拉刷新   |
+| pk_skeleton          | 骨架屏       |
+| fluttertoast         | 提示 toast   |
+| dio                  | 通讯 http    |
+| cookie_jar           | cookie       |
+| dio_cookie_manager   | dio cookie   |
+| shared_preferences   | 本地存储     |
+| cached_network_image | 图片缓存     |
+| crypto               | 加密 SHA     |
+| provider             | 响应数据     |
+| webview_flutter      | web显示      |
+| loading_animations   | loading 动画 |
+| share                | 分享         |
+| auto_route_generator | 自动路由     |
+| build_runner         | 路由代码生成 |
 
 ## 功能
 
 - [x] 欢迎界面
 - [x] 登录界面
 - [x] 注册界面
-- [ ] 首页
+- [x] 首页
 - [ ] 分类页
 - [ ] 搜索页
-- [ ] 详情页
+- [x] 详情页
 
 ## 导入 iconfont 图标库
 
