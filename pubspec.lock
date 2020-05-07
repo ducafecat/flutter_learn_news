@@ -230,6 +230,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0"
+  flutter_launcher_icons:
+    dependency: "direct dev"
+    description:
+      name: flutter_launcher_icons
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.5"
   flutter_screenutil:
     dependency: "direct main"
     description:
