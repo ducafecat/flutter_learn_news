@@ -1,4 +1,4 @@
-package com.example.flutter_ducafecat_news
+package com.example.flutterducafecatnews
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

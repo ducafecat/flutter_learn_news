@@ -2,12 +2,12 @@
 
 ## 项目目标
 
-通过新闻APP业务构建一套精简的代码模板。
+通过新闻 APP 业务构建一套精简的代码模板。
 
 ## SDK 环境
 
 ```
-Flutter 1.12.13+hotfix.9 
+Flutter 1.12.13+hotfix.9
 Tools • Dart 2.7.2
 ```
 
@@ -46,7 +46,7 @@ Tools • Dart 2.7.2
 | cached_network_image | 图片缓存     |
 | crypto               | 加密 SHA     |
 | provider             | 响应数据     |
-| webview_flutter      | web显示      |
+| webview_flutter      | web 显示     |
 | loading_animations   | loading 动画 |
 | share                | 分享         |
 | auto_route_generator | 自动路由     |

@@ -1,9 +1,14 @@
+import 'dart:io';
+
+import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/global.dart';
 import 'package:flutter_ducafecat_news/pages/application/application.dart';
 import 'package:flutter_ducafecat_news/pages/sign_in/sign_in.dart';
 import 'package:flutter_ducafecat_news/pages/welcome/welcome.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -13,6 +18,28 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // app 升级
+    // if (Global.isRelease == true) {
+    doAppUpdate();
+    // }
+  }
+
+  Future doAppUpdate() async {
+    await Future.delayed(Duration(seconds: 3), () async {
+      if (Global.isIOS == false &&
+          await Permission.storage.isGranted == false) {
+        await [Permission.storage].request();
+      }
+      if (await Permission.storage.isGranted) {
+        AppUpdateUtil().run(context);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(

@@ -9,3 +9,4 @@ export 'net_cache.dart';
 export 'iconfont.dart';
 export 'date.dart';
 export 'authentication.dart';
+export 'update.dart';

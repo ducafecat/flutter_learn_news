@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/provider/provider.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
+import 'package:package_info/package_info.dart';
 
 /// 全局配置
 class Global {
@@ -13,6 +15,21 @@ class Global {
   static UserLoginResponseEntity profile = UserLoginResponseEntity(
     accessToken: null,
   );
+
+  /// 发布渠道
+  static String channel = "xiaomi";
+
+  /// 是否 ios
+  static bool isIOS = Platform.isIOS;
+
+  /// android 设备信息
+  static AndroidDeviceInfo androidDeviceInfo;
+
+  /// ios 设备信息
+  static IosDeviceInfo iosDeviceInfo;
+
+  /// 包信息
+  static PackageInfo packageInfo;
 
   /// 是否第一次打开
   static bool isFirstOpen = false;
@@ -30,6 +47,17 @@ class Global {
   static Future init() async {
     // 运行初始
     WidgetsFlutterBinding.ensureInitialized();
+
+    // 读取设备信息
+    DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+    if (Global.isIOS) {
+      Global.iosDeviceInfo = await deviceInfoPlugin.iosInfo;
+    } else {
+      Global.androidDeviceInfo = await deviceInfoPlugin.androidInfo;
+    }
+
+    // 包信息
+    Global.packageInfo = await PackageInfo.fromPlatform();
 
     // 工具初始
     await StorageUtil.init();

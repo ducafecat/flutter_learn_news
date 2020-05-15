@@ -66,6 +66,24 @@ dependencies:
   # share
   share: ^0.6.4
 
+  # 设备信息
+  device_info: ^0.4.2+3
+
+  # 包信息
+  package_info: ^0.4.0+18
+
+  # 路径查询
+  path_provider: ^1.6.8
+
+  # permission 权限
+  permission_handler: ^5.0.0+hotfix.6
+
+  # 安装
+  install_plugin: ^2.0.1
+
+  # 对话框
+  easy_dialog: ^1.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
