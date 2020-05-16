@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pk_skeleton/pk_skeleton.dart';
 
 /// 透明背景 AppBar
 Widget transparentAppBar({

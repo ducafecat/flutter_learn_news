@@ -5,6 +5,7 @@ import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/apis/app.dart';
 import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
+import 'package:flutter_ducafecat_news/common/widgets/toast.dart';
 import 'package:flutter_ducafecat_news/global.dart';
 import 'package:install_plugin/install_plugin.dart';
 import 'package:path_provider/path_provider.dart';
@@ -56,6 +57,7 @@ class AppUpdateUtil {
           InstallPlugin.gotoAppStore(_appUpdateInfo.shopUrl);
         } else {
           // apk 下载安装
+          toastInfo(msg: "开始下载升级包");
           _downloadAPKAndSetup(_appUpdateInfo.fileUrl);
         }
       });

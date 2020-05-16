@@ -4,7 +4,7 @@ import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 
 /// 系统相关
 class AppApi {
-  /// 获取版本号
+  /// 获取最新版本信息
   static Future<AppUpdateResponseEntity> update({
     @required BuildContext context,
     AppUpdateRequestEntity params,

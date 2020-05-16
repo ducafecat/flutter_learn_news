@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/global.dart';
@@ -22,10 +19,9 @@ class _IndexPageState extends State<IndexPage> {
   void initState() {
     super.initState();
 
-    // app 升级
-    // if (Global.isRelease == true) {
-    doAppUpdate();
-    // }
+    if (Global.isRelease == true) {
+      doAppUpdate();
+    }
   }
 
   Future doAppUpdate() async {

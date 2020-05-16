@@ -1,6 +1,56 @@
 [
   {
-    "index": 0,
+    "index": 1,
+    "name": "0-系统",
+    "desc": null,
+    "add_time": 1589249062,
+    "up_time": 1589249062,
+    "list": [
+      {
+        "query_path": {
+          "path": "/app/update",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "done",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 427,
+        "method": "POST",
+        "catid": 451,
+        "title": "程序升级",
+        "path": "/app/update",
+        "project_id": 74,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 67,
+        "add_time": 1589249111,
+        "up_time": 1589610356,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "5ebf8774d70daa65c846d9a2",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"device\":{\"type\":\"string\",\"description\":\"设备 ios android\",\"enum\":[\"ios\",\"android\"]},\"channel\":{\"type\":\"string\",\"description\":\"渠道 苹果店 华为店 小米店 各种APP平台\"},\"architecture\":{\"type\":\"string\",\"description\":\"cpu架构 arm x86\"},\"model\":{\"type\":\"string\",\"description\":\"机型 小米 HUAWEI OPPO\"}},\"required\":[\"device\",\"channel\",\"architecture\",\"model\"]}",
+        "req_body_type": "json",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"shopUrl\":{\"type\":\"string\",\"description\":\"店铺链接\",\"enum\":[\"https://apps.apple.com/cn/app/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E6%A6%82%E5%BF%B5/id1204090346\"]},\"fileUrl\":{\"type\":\"string\",\"description\":\"文件下载链接\",\"enum\":[\"https://yjy-oss-files.oss-cn-zhangjiakou.aliyuncs.com/apk/app-news-armeabi-v7a-release.apk\"]},\"latestVersion\":{\"type\":\"string\",\"description\":\"最新的版本\",\"enum\":[\"1.0.3\"]},\"latestDescription\":{\"type\":\"string\",\"description\":\"更新说明\",\"enum\":[\"1 加入了自动升级功能 2 动态授权存储权限 3 IOS 端支持 swift 语言\"]}},\"required\":[\"shopUrl\",\"fileUrl\",\"latestVersion\",\"latestDescription\"]}"
+      }
+    ]
+  },
+  {
+    "index": 2,
     "name": "1-用户",
     "desc": null,
     "add_time": 1587331278,
@@ -50,7 +100,7 @@
     ]
   },
   {
-    "index": 0,
+    "index": 3,
     "name": "2-新闻",
     "desc": null,
     "add_time": 1587331278,
