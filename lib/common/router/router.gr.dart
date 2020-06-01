@@ -24,17 +24,25 @@ abstract class Routes {
   static const signUpPageRoute = '/sign-up-page-route';
   static const applicationPageRoute = '/application-page-route';
   static const detailsPageRoute = '/details-page-route';
+  static const all = {
+    indexPageRoute,
+    welcomePageRoute,
+    signInPageRoute,
+    signUpPageRoute,
+    applicationPageRoute,
+    detailsPageRoute,
+  };
 }
 
 class AppRouter extends RouterBase {
+  @override
+  Set<String> get allRoutes => Routes.all;
   @override
   Map<String, List<Type>> get guardedRoutes => {
         Routes.applicationPageRoute: [AuthGuard],
         Routes.detailsPageRoute: [AuthGuard],
       };
-
-  //This will probably be removed in future versions
-  //you should call ExtendedNavigator.ofRouter<Router>() directly
+  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
   static ExtendedNavigatorState get navigator =>
       ExtendedNavigator.ofRouter<AppRouter>();
 
@@ -48,7 +56,7 @@ class AppRouter extends RouterBase {
         }
         final typedArgs = args as IndexPageArguments ?? IndexPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => IndexPage(key: typedArgs.key),
+          builder: (context) => IndexPage(key: typedArgs.key),
           settings: settings,
         );
       case Routes.welcomePageRoute:
@@ -58,7 +66,7 @@ class AppRouter extends RouterBase {
         final typedArgs =
             args as WelcomePageArguments ?? WelcomePageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => WelcomePage(key: typedArgs.key),
+          builder: (context) => WelcomePage(key: typedArgs.key),
           settings: settings,
         );
       case Routes.signInPageRoute:
@@ -67,7 +75,7 @@ class AppRouter extends RouterBase {
         }
         final typedArgs = args as SignInPageArguments ?? SignInPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => SignInPage(key: typedArgs.key),
+          builder: (context) => SignInPage(key: typedArgs.key),
           settings: settings,
         );
       case Routes.signUpPageRoute:
@@ -76,7 +84,7 @@ class AppRouter extends RouterBase {
         }
         final typedArgs = args as SignUpPageArguments ?? SignUpPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => SignUpPage(key: typedArgs.key),
+          builder: (context) => SignUpPage(key: typedArgs.key),
           settings: settings,
         );
       case Routes.applicationPageRoute:
@@ -86,7 +94,7 @@ class AppRouter extends RouterBase {
         final typedArgs =
             args as ApplicationPageArguments ?? ApplicationPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ApplicationPage(key: typedArgs.key),
+          builder: (context) => ApplicationPage(key: typedArgs.key),
           settings: settings,
         );
       case Routes.detailsPageRoute:
@@ -96,7 +104,7 @@ class AppRouter extends RouterBase {
         final typedArgs =
             args as DetailsPageArguments ?? DetailsPageArguments();
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
+          pageBuilder: (context, animation, secondaryAnimation) =>
               DetailsPage(key: typedArgs.key, item: typedArgs.item),
           settings: settings,
           transitionsBuilder: zoomInTransition,
@@ -107,9 +115,9 @@ class AppRouter extends RouterBase {
   }
 }
 
-//**************************************************************************
+// *************************************************************************
 // Arguments holder classes
-//***************************************************************************
+// **************************************************************************
 
 //IndexPage arguments holder class
 class IndexPageArguments {
@@ -146,38 +154,4 @@ class DetailsPageArguments {
   final Key key;
   final NewsItem item;
   DetailsPageArguments({this.key, this.item});
-}
-
-//**************************************************************************
-// Navigation helper methods extension
-//***************************************************************************
-
-extension AppRouterNavigationHelperMethods on ExtendedNavigatorState {
-  Future pushIndexPageRoute({
-    Key key,
-  }) =>
-      pushNamed(Routes.indexPageRoute, arguments: IndexPageArguments(key: key));
-  Future pushWelcomePageRoute({
-    Key key,
-  }) =>
-      pushNamed(Routes.welcomePageRoute,
-          arguments: WelcomePageArguments(key: key));
-  Future pushSignInPageRoute({
-    Key key,
-  }) =>
-      pushNamed(Routes.signInPageRoute,
-          arguments: SignInPageArguments(key: key));
-  Future pushSignUpPageRoute({
-    Key key,
-  }) =>
-      pushNamed(Routes.signUpPageRoute,
-          arguments: SignUpPageArguments(key: key));
-  Future pushApplicationPageRoute({Key key, OnNavigationRejected onReject}) =>
-      pushNamed(Routes.applicationPageRoute,
-          arguments: ApplicationPageArguments(key: key), onReject: onReject);
-  Future pushDetailsPageRoute(
-          {Key key, NewsItem item, OnNavigationRejected onReject}) =>
-      pushNamed(Routes.detailsPageRoute,
-          arguments: DetailsPageArguments(key: key, item: item),
-          onReject: onReject);
 }

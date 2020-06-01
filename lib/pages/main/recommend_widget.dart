@@ -16,7 +16,7 @@ Widget recommendWidget(NewsItem item) {
         // 图
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(item: item);
+            ExtendedNavigator.rootNavigator.pushNamed(Routes.detailsPageRoute, arguments: item);
           },
           child: imageCached(
             item.thumbnail,
@@ -40,7 +40,7 @@ Widget recommendWidget(NewsItem item) {
         // 标题
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator.pushDetailsPageRoute(item: item);
+            ExtendedNavigator.rootNavigator.pushNamed(Routes.detailsPageRoute, arguments: item);
           },
           child: Container(
             margin: EdgeInsets.only(top: duSetHeight(10)),

@@ -7,8 +7,10 @@
 ## SDK 环境
 
 ```
-Flutter 1.12.13+hotfix.9
-Tools • Dart 2.7.2
+Flutter 1.17.2 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 5f21edf8b6 (4 days ago) • 2020-05-28 12:44:12 -0700
+Engine • revision b851c71829
+Tools • Dart 2.8.3
 ```
 
 ## 界面适配 IOS、Android
