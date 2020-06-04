@@ -84,6 +84,9 @@ dependencies:
   # 对话框
   easy_dialog: ^1.0.5
 
+  # 错误收集
+  sentry: ^3.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
