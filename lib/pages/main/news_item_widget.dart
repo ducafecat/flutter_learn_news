@@ -18,7 +18,10 @@ Widget newsItem(NewsItem item) {
         // 图
         InkWell(
           onTap: () {
-            ExtendedNavigator.rootNavigator.pushNamed(Routes.detailsPageRoute, arguments: item);
+            ExtendedNavigator.rootNavigator.pushNamed(
+              Routes.detailsPageRoute,
+              arguments: DetailsPageArguments(item: item),
+            );
           },
           child: imageCached(
             item.thumbnail,
@@ -49,8 +52,10 @@ Widget newsItem(NewsItem item) {
               // 标题
               InkWell(
                 onTap: () {
-                  ExtendedNavigator.rootNavigator
-                      .pushNamed(Routes.detailsPageRoute, arguments: item);
+                  ExtendedNavigator.rootNavigator.pushNamed(
+                    Routes.detailsPageRoute,
+                    arguments: DetailsPageArguments(item: item),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: duSetHeight(10)),

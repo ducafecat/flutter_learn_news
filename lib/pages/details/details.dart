@@ -238,29 +238,29 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   // 删除广告
-  _removeWebViewAd() async {
-    await (await _controller.future)?.evaluateJavascript('''
-        try {
-          function removeElement(elementName){
-            let _element = document.getElementById(elementName);
-            if(!_element) {
-              _element = document.querySelector(elementName);
-            }
-            if(!_element) {
-              return;
-            }
-            let _parentElement = _element.parentNode;
-            if(_parentElement){
-                _parentElement.removeChild(_element);
-            }
-          }
+  // _removeWebViewAd() async {
+  //   await (await _controller.future)?.evaluateJavascript('''
+  //       try {
+  //         function removeElement(elementName){
+  //           let _element = document.getElementById(elementName);
+  //           if(!_element) {
+  //             _element = document.querySelector(elementName);
+  //           }
+  //           if(!_element) {
+  //             return;
+  //           }
+  //           let _parentElement = _element.parentNode;
+  //           if(_parentElement){
+  //               _parentElement.removeChild(_element);
+  //           }
+  //         }
 
-          removeElement('module-engadget-deeplink-top-ad');
-          removeElement('module-engadget-deeplink-streams');
-          removeElement('footer');
-        } catch{}
-        ''');
-  }
+  //         removeElement('module-engadget-deeplink-top-ad');
+  //         removeElement('module-engadget-deeplink-streams');
+  //         removeElement('footer');
+  //       } catch{}
+  //       ''');
+  // }
 
   // 获取页面高度
   _getWebViewHeight() async {
@@ -276,13 +276,13 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   // 获取web浏览器像素密度
-  _getWebViewDevicePixelRatio() async {
-    await (await _controller.future)?.evaluateJavascript('''
-        try {
-          Invoke.postMessage(window.devicePixelRatio);
-        } catch {}
-        ''');
-  }
+  // _getWebViewDevicePixelRatio() async {
+  //   await (await _controller.future)?.evaluateJavascript('''
+  //       try {
+  //         Invoke.postMessage(window.devicePixelRatio);
+  //       } catch {}
+  //       ''');
+  // }
 
   @override
   Widget build(BuildContext context) {
