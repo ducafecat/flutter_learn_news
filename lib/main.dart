@@ -17,7 +17,7 @@ final SentryClient _sentry = new SentryClient(
 
 // 是否开发环境
 bool get isInDebugMode {
-  return true; // false 开始上传 sentry
+  return false; // false 开始上传 sentry
 }
 
 // 上报异常的函数

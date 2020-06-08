@@ -17,6 +17,9 @@ PODS:
     - Flutter
   - "permission_handler (5.0.0+hotfix.6)":
     - Flutter
+  - Sentry (5.1.2):
+    - Sentry/Core (= 5.1.2)
+  - Sentry/Core (5.1.2)
   - share (0.0.1):
     - Flutter
   - shared_preferences (0.0.1):
@@ -40,6 +43,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `5.1.2`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
@@ -68,6 +72,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_macos/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 5.1.2
   share:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
@@ -81,6 +88,11 @@ EXTERNAL SOURCES:
   webview_flutter:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 5.1.2
+
 SPEC CHECKSUMS:
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
@@ -91,6 +103,7 @@ SPEC CHECKSUMS:
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   permission_handler: b7a0953389e699927c6217933754cdcd0fa2c5a7
+  Sentry: 7ee9a34a2c075a5e9306a1501d61c93a4b5c2333
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
@@ -98,6 +111,6 @@ SPEC CHECKSUMS:
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
-PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+PODFILE CHECKSUM: a12b2c18c1b95e0b8349840175e8e460fe93d59e
 
 COCOAPODS: 1.9.1
