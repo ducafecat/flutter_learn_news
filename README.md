@@ -90,7 +90,9 @@ https://github.com/ducafecat/flutter_learn_news
 
 ## 蓝湖设计稿
 
-https://lanhuapp.com/url/wbhGq
+https://lanhuapp.com/url/lYuz1
+
+密码: gSKl
 
 > 由于设计稿有版权，不方便提供下载，需要的联系我微信添加蓝湖授权
 

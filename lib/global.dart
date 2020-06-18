@@ -77,11 +77,11 @@ class Global {
     }
 
     // android 状态栏为透明的沉浸
-    if (Platform.isAndroid) {
-      SystemUiOverlayStyle systemUiOverlayStyle =
-          SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    }
+    // if (Platform.isAndroid) {
+    //   SystemUiOverlayStyle systemUiOverlayStyle =
+    //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // }
   }
 
   // 持久化 用户信息
