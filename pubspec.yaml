@@ -87,6 +87,9 @@ dependencies:
   # 错误收集
   sentry: ^3.0.1
 
+  # graphql
+  graphql: ^3.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

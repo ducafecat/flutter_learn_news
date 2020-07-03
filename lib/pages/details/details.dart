@@ -9,7 +9,7 @@ import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
-  final NewsItem item;
+  final GqlNewsResponseEntity item;
   DetailsPage({Key key, this.item}) : super(key: key);
 
   @override
@@ -49,7 +49,8 @@ class _DetailsPageState extends State<DetailsPage> {
               color: AppColors.primaryText,
             ),
             onPressed: () {
-              Share.share('${widget.item.title} ${widget.item.url}');
+              Share.share(
+                  '${widget.item.title} $SERVER_STRAPI_GRAPHQL_URL${widget.item.thumbnail.url}');
             },
           ),
         ]);
@@ -106,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
         children: <Widget>[
           // 图
           imageCached(
-            widget.item.thumbnail,
+            '$SERVER_STRAPI_GRAPHQL_URL${widget.item.thumbnail.url}',
             width: duSetWidth(335),
             height: duSetHeight(290),
           ),
@@ -183,7 +184,8 @@ class _DetailsPageState extends State<DetailsPage> {
       height: _webViewHeight,
       child: WebView(
         initialUrl:
-            '$SERVER_API_URL/news/content/${widget.item.id}', //widget.url,
+            //'$SERVER_API_URL/news/content/${widget.item.id}',
+            widget.item.url,
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webViewController) async {
           _controller.complete(webViewController);
@@ -196,10 +198,11 @@ class _DetailsPageState extends State<DetailsPage> {
           _invokeJavascriptChannel(context),
         ].toSet(),
         navigationDelegate: (NavigationRequest request) {
-          if (request.url != '$SERVER_API_URL/news/content/${widget.item.id}') {
-            toastInfo(msg: request.url);
-            return NavigationDecision.prevent;
-          }
+          //if (request.url != '$SERVER_API_URL/news/content/${widget.item.id}') {
+          // if (request.url != widget.item.url) {
+          //   toastInfo(msg: request.url);
+          //   return NavigationDecision.prevent;
+          // }
           return NavigationDecision.navigate;
         },
         onPageStarted: (String url) {

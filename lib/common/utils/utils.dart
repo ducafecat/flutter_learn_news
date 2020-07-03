@@ -10,3 +10,4 @@ export 'iconfont.dart';
 export 'date.dart';
 export 'authentication.dart';
 export 'update.dart';
+export 'graphql_client.dart';

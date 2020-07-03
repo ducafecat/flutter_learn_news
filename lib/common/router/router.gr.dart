@@ -15,7 +15,7 @@ import 'package:flutter_ducafecat_news/pages/application/application.dart';
 import 'package:flutter_ducafecat_news/common/router/auth_grard.dart';
 import 'package:flutter_ducafecat_news/pages/details/details.dart';
 import 'package:flutter_ducafecat_news/common/router/router.dart';
-import 'package:flutter_ducafecat_news/common/entitys/news.dart';
+import 'package:flutter_ducafecat_news/common/entitys/gql_news.dart';
 
 abstract class Routes {
   static const indexPageRoute = '/';
@@ -152,6 +152,6 @@ class ApplicationPageArguments {
 //DetailsPage arguments holder class
 class DetailsPageArguments {
   final Key key;
-  final NewsItem item;
+  final GqlNewsResponseEntity item;
   DetailsPageArguments({this.key, this.item});
 }

@@ -7,7 +7,7 @@ import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
 import 'package:flutter_ducafecat_news/common/router/router.gr.dart';
 
 /// 新闻行 Item
-Widget newsItem(NewsItem item) {
+Widget newsItem(GqlNewsResponseEntity item) {
   return Container(
     height: duSetHeight(161),
     padding: EdgeInsets.all(duSetWidth(20)),
@@ -24,7 +24,7 @@ Widget newsItem(NewsItem item) {
             );
           },
           child: imageCached(
-            item.thumbnail,
+            '$SERVER_STRAPI_GRAPHQL_URL${item.thumbnail.url}',
             width: duSetWidth(121),
             height: duSetWidth(121),
           ),

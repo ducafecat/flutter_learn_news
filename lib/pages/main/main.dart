@@ -24,7 +24,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   EasyRefreshController _controller; // EasyRefresh控制器
 
-  NewsPageListResponseEntity _newsPageList; // 新闻翻页
+  // NewsPageListResponseEntity _newsPageList; // 新闻翻页
+  List<GqlNewsResponseEntity> _newsPageList; // 新闻翻页
+
   NewsItem _newsRecommend; // 新闻推荐
   List<CategoryResponseEntity> _categories; // 分类
   List<ChannelResponseEntity> _channels; // 频道
@@ -61,13 +63,17 @@ class _MainPageState extends State<MainPage> {
       context: context,
       cacheDisk: true,
     );
-    _newsRecommend = await NewsAPI.newsRecommend(
+    // _newsRecommend = await NewsAPI.newsRecommend(
+    //   context: context,
+    //   cacheDisk: true,
+    // );
+
+    // _newsPageList = await NewsAPI.newsPageList(
+    //   context: context,
+    //   cacheDisk: true,
+    // );
+    _newsPageList = await GqlNewsAPI.newsPageList(
       context: context,
-      cacheDisk: true,
-    );
-    _newsPageList = await NewsAPI.newsPageList(
-      context: context,
-      cacheDisk: true,
     );
 
     _selCategoryCode = _categories.first.code;
@@ -89,11 +95,14 @@ class _MainPageState extends State<MainPage> {
       refresh: refresh,
       cacheDisk: true,
     );
-    _newsPageList = await NewsAPI.newsPageList(
+    // _newsPageList = await NewsAPI.newsPageList(
+    //   context: context,
+    //   params: NewsPageListRequestEntity(categoryCode: categoryCode),
+    //   refresh: refresh,
+    //   cacheDisk: true,
+    // );
+    _newsPageList = await GqlNewsAPI.newsPageList(
       context: context,
-      params: NewsPageListRequestEntity(categoryCode: categoryCode),
-      refresh: refresh,
-      cacheDisk: true,
     );
 
     if (mounted) {
@@ -138,7 +147,7 @@ class _MainPageState extends State<MainPage> {
             height: duSetHeight(161 * 5 + 100.0),
           )
         : Column(
-            children: _newsPageList.items.map((item) {
+            children: _newsPageList.map((item) {
               // 新闻行
               List<Widget> widgets = <Widget>[
                 newsItem(item),
@@ -146,7 +155,7 @@ class _MainPageState extends State<MainPage> {
               ];
 
               // 每 5 条 显示广告
-              int index = _newsPageList.items.indexOf(item);
+              int index = _newsPageList.indexOf(item);
               if (((index + 1) % 5) == 0) {
                 widgets.addAll(<Widget>[
                   adWidget(),
