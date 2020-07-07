@@ -6,7 +6,7 @@
 
 - [客户端 flutter + yapi](https://github.com/ducafecat/flutter_learn_news)
 - [客户端 flutter + strapi + graphql](https://github.com/ducafecat/flutter_learn_news/tree/graphql+strapi)
-- [客户端后台 flutter + strapi + eggjs + mongo + redis](https://github.com/ducafecat/flutter_ducafecat_news_backend)
+- [客户端后台 docker + strapi + eggjs + mongo + redis](https://github.com/ducafecat/flutter_ducafecat_news_backend)
 
 ## 项目目标
 
