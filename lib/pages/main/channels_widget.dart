@@ -5,8 +5,8 @@ import 'package:flutter_ducafecat_news/common/values/values.dart';
 
 /// 频道导航
 Widget newsChannelsWidget({
-  List<ChannelResponseEntity> channels,
-  Function(ChannelResponseEntity) onTap,
+  List<DictChannelEntity> channels,
+  Function(DictChannelEntity) onTap,
 }) {
   return Container(
     height: duSetHeight(137),
@@ -51,9 +51,11 @@ Widget newsChannelsWidget({
                           left: duSetWidth(10),
                           top: duSetWidth(10),
                           right: duSetWidth(10),
-                          child: Image.asset(
-                            "assets/images/channel-${item.code}.png",
-                            fit: BoxFit.none,
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              "$SERVER_STRAPI_GRAPHQL_URL${item.icon.url}",
+                            ),
+                            radius: duSetWidth(44) / 2,
                           ),
                         ),
                       ],

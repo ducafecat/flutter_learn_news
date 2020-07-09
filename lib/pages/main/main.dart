@@ -24,6 +24,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   EasyRefreshController _controller; // EasyRefresh控制器
 
+  GqlIndexResponseEntity _indexPageData; // 首页数据
+
   // NewsPageListResponseEntity _newsPageList; // 新闻翻页
   List<GqlNewsResponseEntity> _newsPageList; // 新闻翻页
 
@@ -55,14 +57,18 @@ class _MainPageState extends State<MainPage> {
 
   // 读取所有数据
   _loadAllData() async {
-    _categories = await NewsAPI.categories(
-      context: context,
-      cacheDisk: true,
-    );
-    _channels = await NewsAPI.channels(
-      context: context,
-      cacheDisk: true,
-    );
+    _indexPageData = await GqlNewsAPI.indexPageInfo(context: context);
+
+    _newsPageList = _indexPageData.busNews;
+
+    // _categories = await NewsAPI.categories(
+    //   context: context,
+    //   cacheDisk: true,
+    // );
+    // _channels = await NewsAPI.channels(
+    //   context: context,
+    //   cacheDisk: true,
+    // );
     // _newsRecommend = await NewsAPI.newsRecommend(
     //   context: context,
     //   cacheDisk: true,
@@ -72,11 +78,12 @@ class _MainPageState extends State<MainPage> {
     //   context: context,
     //   cacheDisk: true,
     // );
-    _newsPageList = await GqlNewsAPI.newsPageList(
-      context: context,
-    );
+    // _newsPageList = await GqlNewsAPI.newsPageList(
+    //   context: context,
+    // );
 
-    _selCategoryCode = _categories.first.code;
+    // _selCategoryCode = _categories.first.code;
+    _selCategoryCode = _indexPageData.dictCategories.first.code;
 
     if (mounted) {
       setState(() {});
@@ -89,12 +96,12 @@ class _MainPageState extends State<MainPage> {
     bool refresh = false,
   }) async {
     _selCategoryCode = categoryCode;
-    _newsRecommend = await NewsAPI.newsRecommend(
-      context: context,
-      params: NewsRecommendRequestEntity(categoryCode: categoryCode),
-      refresh: refresh,
-      cacheDisk: true,
-    );
+    // _newsRecommend = await NewsAPI.newsRecommend(
+    //   context: context,
+    //   params: NewsRecommendRequestEntity(categoryCode: categoryCode),
+    //   refresh: refresh,
+    //   cacheDisk: true,
+    // );
     // _newsPageList = await NewsAPI.newsPageList(
     //   context: context,
     //   params: NewsPageListRequestEntity(categoryCode: categoryCode),
@@ -102,8 +109,7 @@ class _MainPageState extends State<MainPage> {
     //   cacheDisk: true,
     // );
     _newsPageList = await GqlNewsAPI.newsPageList(
-      context: context,
-    );
+        context: context, params: {"category_code": categoryCode});
 
     if (mounted) {
       setState(() {});
@@ -112,12 +118,12 @@ class _MainPageState extends State<MainPage> {
 
   // 分类菜单
   Widget _buildCategories() {
-    return _categories == null
+    return _indexPageData == null
         ? Container()
         : newsCategoriesWidget(
-            categories: _categories,
+            categories: _indexPageData.dictCategories,
             selCategoryCode: _selCategoryCode,
-            onTap: (CategoryResponseEntity item) {
+            onTap: (DictCategoryEntity item) {
               _loadNewsData(item.code);
             },
           );
@@ -132,11 +138,11 @@ class _MainPageState extends State<MainPage> {
 
   // 频道
   Widget _buildChannels() {
-    return _channels == null
+    return _indexPageData == null
         ? Container()
         : newsChannelsWidget(
-            channels: _channels,
-            onTap: (ChannelResponseEntity item) {},
+            channels: _indexPageData.dictChannels,
+            onTap: (DictChannelEntity item) {},
           );
   }
 

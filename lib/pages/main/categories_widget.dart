@@ -5,9 +5,9 @@ import 'package:flutter_ducafecat_news/common/values/values.dart';
 
 /// 分类导航
 Widget newsCategoriesWidget({
-  List<CategoryResponseEntity> categories,
+  List<DictCategoryEntity> categories,
   String selCategoryCode,
-  Function(CategoryResponseEntity) onTap,
+  Function(DictCategoryEntity) onTap,
 }) {
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,

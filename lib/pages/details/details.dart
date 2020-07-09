@@ -66,7 +66,7 @@ class _DetailsPageState extends State<DetailsPage> {
             children: <Widget>[
               // 标题
               Text(
-                widget.item.category,
+                widget.item.dictChannel.title,
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontWeight: FontWeight.normal,
@@ -137,7 +137,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     maxWidth: 120,
                   ),
                   child: Text(
-                    widget.item.category,
+                    widget.item.title,
                     style: TextStyle(
                       fontFamily: 'Avenir',
                       fontWeight: FontWeight.normal,

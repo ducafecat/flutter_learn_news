@@ -81,23 +81,25 @@ Widget newsItem(GqlNewsResponseEntity item) {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     // 分类
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: duSetWidth(60),
-                      ),
-                      child: Text(
-                        item.category,
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.secondaryElementText,
-                          fontSize: duSetFontSize(14),
-                          height: 1,
-                        ),
-                        overflow: TextOverflow.clip,
-                        maxLines: 1,
-                      ),
-                    ),
+                    item.dictChannel == null
+                        ? Container()
+                        : ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: duSetWidth(60),
+                            ),
+                            child: Text(
+                              item.dictChannel.title,
+                              style: TextStyle(
+                                fontFamily: 'Avenir',
+                                fontWeight: FontWeight.normal,
+                                color: AppColors.secondaryElementText,
+                                fontSize: duSetFontSize(14),
+                                height: 1,
+                              ),
+                              overflow: TextOverflow.clip,
+                              maxLines: 1,
+                            ),
+                          ),
                     // 添加时间
                     Container(
                       width: duSetWidth(15),
