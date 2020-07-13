@@ -58,6 +58,7 @@ Tools • Dart 2.8.3
 | [12 采用 sentry 平台收集错误](https://ducafecat.tech/2020/06/05/flutter-project/flutter-project-news-12-error-sentry/)                                     | [视频](https://www.bilibili.com/video/BV1Ek4y1r7zk) | [视频](https://www.youtube.com/watch?v=BzE-vQCrak0&list=PL274L1n86T80VZR30KaLOKV6jqwTq5E8D&index=21&t=0s) |
 | [13 使用 supernova 导入 adobe xd 自动生成用户中心代码](https://ducafecat.tech/2020/06/18/flutter-project/flutter-project-news-13-code-generate-supernova/) | [视频](https://www.bilibili.com/video/BV1t5411W7Tt) | [视频](https://www.youtube.com/watch?v=ySDsQUb6kmE&list=PL274L1n86T80VZR30KaLOKV6jqwTq5E8D&index=21)      |
 | [14 headless strapi + graphql 快速构建新闻后台](https://ducafecat.tech/2020/07/03/flutter-project/flutter-project-news-14-headless-strapi-graphql/)        | [视频](https://www.bilibili.com/video/BV1Zz411e7dj) | [视频](https://www.youtube.com/watch?v=3ad-TZ6U3-E)                                                       |
+| [15 strapi 数据建模 graphql 条件查询排序](https://ducafecat.tech/2020/07/09/flutter-project/flutter-project-news-15-strapi-graphql-data-model/)            | [视频](https://www.bilibili.com/video/BV1jD4y1S7Mu) | [视频](https://youtu.be/OZSsRKMTCO4)                                                                      |
 
 ## 技术点
 
