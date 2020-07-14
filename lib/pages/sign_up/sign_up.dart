@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ducafecat_news/common/apis/apis.dart';
+import 'package:flutter_ducafecat_news/common/entitys/entitys.dart';
 import 'package:flutter_ducafecat_news/common/utils/utils.dart';
 import 'package:flutter_ducafecat_news/common/values/values.dart';
 import 'package:flutter_ducafecat_news/common/widgets/widgets.dart';
@@ -12,9 +14,12 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   // fullName email password 的控制器
-  final TextEditingController _fullnameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _fullnameController =
+      TextEditingController(text: "news");
+  final TextEditingController _emailController =
+      TextEditingController(text: "news@ducafecat.tech");
+  final TextEditingController _passController =
+      TextEditingController(text: "12345678");
 
   // 返回上一页
   _handleNavPop() {
@@ -22,9 +27,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   // 执行注册操作
-  _handleSignUp() {
-    if (!duCheckStringLength(_fullnameController.value.text, 5)) {
-      toastInfo(msg: '用户名不能小于5位');
+  _handleSignUp() async {
+    if (!duCheckStringLength(_fullnameController.value.text, 3)) {
+      toastInfo(msg: '用户名不能小于3位');
       return;
     }
     if (!duIsEmail(_emailController.value.text)) {
@@ -35,6 +40,25 @@ class _SignUpPageState extends State<SignUpPage> {
       toastInfo(msg: '密码不能小于6位');
       return;
     }
+
+    GqlUserRegisterRequestEntity variables = GqlUserRegisterRequestEntity(
+      username: _fullnameController.value.text,
+      email: _emailController.value.text,
+      password: _passController.value.text,
+      // password: duSHA256(_passController.value.text),
+    );
+
+    try {
+      // GqlUserRegisterResponseEntity userProfile =
+      await GqlUserAPI.register(
+        context: context,
+        variables: variables,
+      );
+      toastInfo(msg: '注册成功，返回登录页!');
+    } catch (e) {
+      return toastInfo(msg: '注册失败，请正确输入账号、邮箱!');
+    }
+
     Navigator.pop(context);
   }
 
@@ -90,21 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
             height: duSetHeight(44),
             margin: EdgeInsets.only(top: duSetHeight(15)),
             child: btnFlatButtonWidget(
-              onPressed: () {
-                if (!duCheckStringLength(_fullnameController.value.text, 5)) {
-                  toastInfo(msg: '用户名不能小于5位');
-                  return;
-                }
-                if (!duIsEmail(_emailController.value.text)) {
-                  toastInfo(msg: '请正确输入邮件');
-                  return;
-                }
-                if (!duCheckStringLength(_passController.value.text, 6)) {
-                  toastInfo(msg: '密码不能小于6位');
-                  return;
-                }
-                Navigator.pop(context);
-              },
+              onPressed: _handleSignUp,
               width: 295,
               fontWeight: FontWeight.w600,
               title: "Create an account",

@@ -17,9 +17,11 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   // email的控制器
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController =
+      TextEditingController(text: "news@ducafecat.tech");
   // 密码的控制器
-  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _passController =
+      TextEditingController(text: "12345678");
 
   // 跳转 注册界面
   _handleNavSignUp() {
@@ -28,27 +30,33 @@ class _SignInPageState extends State<SignInPage> {
 
   // 执行登录操作
   _handleSignIn() async {
-    // if (!duIsEmail(_emailController.value.text)) {
-    //   toastInfo(msg: '请正确输入邮件');
-    //   return;
-    // }
-    // if (!duCheckStringLength(_passController.value.text, 6)) {
-    //   toastInfo(msg: '密码不能小于6位');
-    //   return;
-    // }
+    if (!duIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!duCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
 
-    UserLoginRequestEntity params = UserLoginRequestEntity(
-      email: _emailController.value.text,
-      password: duSHA256(_passController.value.text),
+    GqlUserLoginRequestEntity variables = GqlUserLoginRequestEntity(
+      identifier: _emailController.value.text,
+      password: _passController.value.text,
+      // password: duSHA256(_passController.value.text),
     );
 
-    UserLoginResponseEntity userProfile = await UserAPI.login(
-      context: context,
-      params: params,
-    );
-    Global.saveProfile(userProfile);
+    try {
+      GqlUserLoginResponseEntity userProfile = await GqlUserAPI.login(
+        context: context,
+        variables: variables,
+      );
+      Global.saveProfile(userProfile);
+    } catch (e) {
+      return toastInfo(msg: '请正确输入账号、密码！');
+    }
 
-    ExtendedNavigator.rootNavigator.pushNamed(Routes.applicationPageRoute);
+    ExtendedNavigator.rootNavigator
+        .pushReplacementNamed(Routes.applicationPageRoute);
   }
 
   ///////////////////////////////

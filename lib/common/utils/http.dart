@@ -214,7 +214,7 @@ class HttpUtil {
   /// 读取本地配置
   Map<String, dynamic> getAuthorizationHeader() {
     var headers;
-    String accessToken = Global.profile?.accessToken;
+    String accessToken = Global.profile?.jwt;
     if (accessToken != null) {
       headers = {
         'Authorization': 'Bearer $accessToken',

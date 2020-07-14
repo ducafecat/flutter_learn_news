@@ -101,7 +101,7 @@ class _AccountPageState extends State<AccountPage> {
                       Container(
                         margin: EdgeInsets.only(bottom: 9),
                         child: Text(
-                          Global.profile.displayName,
+                          Global.profile.user.username,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.primaryText,

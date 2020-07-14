@@ -118,6 +118,7 @@ class _ApplicationPageState extends State<ApplicationPage>
             fontWeight: FontWeight.w600,
           ),
         ),
+        // leading: Container(),
         // leading: IconButton(
         //   icon: Icon(
         //     Icons.arrow_back,

@@ -7,3 +7,4 @@ const SERVER_API_URL = 'https://api.guaik.org/mock/74';
 // const SERVER_API_URL = 'http://yapi.ducafecat.tech/mock/11';
 
 const SERVER_STRAPI_GRAPHQL_URL = 'http://172.16.43.74:1337';
+// const SERVER_STRAPI_GRAPHQL_URL = 'http://127.0.0.1:1337';
