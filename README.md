@@ -1,3 +1,7 @@
+<a href="https://ducafecat.com" target="_blank">
+  <img src="https://ducafecat.oss-cn-beijing.aliyuncs.com/ducafecat/video-ducafecat-banner.png" alt="猫哥视频站" >
+</a>
+
 # Flutter 新闻客户端
 
 ![ios-index](doc/images/ios-index.png)
